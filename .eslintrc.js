@@ -1,5 +1,5 @@
 module.exports = {
-    "extends": "google",
+    "extends": "airbnb",
     "parser": "babel-eslint",
     "plugins": ["react"],
 };
