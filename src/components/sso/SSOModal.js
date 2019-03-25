@@ -66,9 +66,9 @@ export class SSOModal extends Component {
 
 const styles = {
   root: {
-    minWidth: 300,
+    minWidth: 250,
     minHeight: 350,
-    maxWidth: 300,
+    maxWidth: 250,
     padding: 16,
     display: 'flex',
     flexFlow: 'column',
