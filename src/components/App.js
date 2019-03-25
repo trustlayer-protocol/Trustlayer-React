@@ -1,5 +1,6 @@
 import React from 'react';
-import SSODialog from './SSOModal';
+import SSODialog from './sso/SSOModal';
+import 'typeface-roboto';
 
 
 const App = () => (
