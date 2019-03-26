@@ -1,5 +1,6 @@
 body,
 html {
+	font-family: Roboto, sans-serif;
 	box-sizing: border-box;
 	background: #ececec;
 	margin: 0;
@@ -11,4 +12,8 @@ html {
 *:after,
 *:before {
 	box-sizing: inherit;
+}
+
+button {
+	cursor: pointer;
 }

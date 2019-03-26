@@ -1,5 +1,7 @@
 import React from 'react'
 import UserCode from 'scenes/UserCode'
+import AgreementCode from 'scenes/AgreementCode'
+import HomeCode from 'scenes/HomeCode'
 
 const getFirstCharacter = text => text.charAt(0).toLowerCase()
 
@@ -9,10 +11,10 @@ export default ({ match }) => {
 			return <UserCode />
 
 		case 'a':
-			return <div>Agreement code</div>
+			return <AgreementCode />
 
 		case 'h':
-			return <div>Home code</div>
+			return <HomeCode />
 
 		default:
 			return (

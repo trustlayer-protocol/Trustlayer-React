@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-const Avatar = styled('div')`
+const Avatar = styled.div`
 	background: #333;
 	width: 28px;
 	height: 28px;
@@ -9,7 +9,7 @@ const Avatar = styled('div')`
 	margin-right: 5px;
 `
 
-const Avatars = styled('div')`
+const Avatars = styled.div`
 	display: flex;
 	align-items: center;
 `

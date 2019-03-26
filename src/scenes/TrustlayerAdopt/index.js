@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import UserBlurb from 'components/UserBlurb'
 import AgreementBox from 'components/AgreementBox'
 import AdoptButton from 'components/buttons/Adopt'
 
@@ -13,10 +12,15 @@ const Container = styled.div`
 	margin: 0 auto;
 `
 
+const Heading = styled.div`
+	font-size: 40px;
+	margin-bottom: 20px;
+`
+
 export default () => (
 	<Root>
 		<Container>
-			<UserBlurb />
+			<Heading>Make NDAs automatic</Heading>
 			<AgreementBox />
 			<AdoptButton />
 		</Container>

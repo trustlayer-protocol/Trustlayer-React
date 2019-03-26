@@ -2,7 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import UserBlurb from 'components/UserBlurb'
 import AgreementBox from 'components/AgreementBox'
-import AdoptButton from 'components/buttons/Adopt'
+import PdfButton from 'components/buttons/PDF'
 
 const Root = styled.div`
 	margin: 40px 0;
@@ -17,8 +17,9 @@ export default () => (
 	<Root>
 		<Container>
 			<UserBlurb />
+			<UserBlurb />
 			<AgreementBox />
-			<AdoptButton />
+			<PdfButton />
 		</Container>
 	</Root>
 )

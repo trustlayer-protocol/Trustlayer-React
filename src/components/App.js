@@ -1,18 +1,12 @@
 import React from 'react'
 import 'typeface-roboto'
 import HashReader from './HashReader.js'
-import IndexPage from 'scenes/IndexPage'
 import { BrowserRouter, Route } from 'react-router-dom'
-import styled from '@emotion/styled'
+import TrustlayerAdopt from 'scenes/TrustlayerAdopt'
 
-const Main = styled('main')``
-const App = () => (
-	<Main>
-		<BrowserRouter>
-			<Route exact path="/" component={IndexPage} />
-			<Route path="/:hashId" component={HashReader} />
-		</BrowserRouter>
-	</Main>
+export default () => (
+	<BrowserRouter>
+		<Route exact path="/" component={TrustlayerAdopt} />
+		<Route path="/:hashId" component={HashReader} />
+	</BrowserRouter>
 )
-
-export default App
