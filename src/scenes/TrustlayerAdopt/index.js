@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import AgreementBox from 'components/AgreementBox'
 import AdoptButton from 'components/buttons/Adopt'
+import SSOModal from 'components/sso/SSOModal'
 
 const Root = styled.div`
 	margin: 40px 0;
@@ -23,6 +24,7 @@ export default () => (
 			<Heading>Make NDAs automatic</Heading>
 			<AgreementBox />
 			<AdoptButton />
+			<SSOModal open />
 		</Container>
 	</Root>
 )
