@@ -1,12 +1,14 @@
 import React from 'react'
-import SSODialog from './sso/SSOModal'
 import 'typeface-roboto'
+import HashReader from './HashReader.js'
+import IndexPage from './IndexPage'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 const App = () => (
-	<>
-		<SSODialog />
-		Hello Trustlayer
-	</>
+	<BrowserRouter>
+		<Route exact path="/" component={IndexPage} />
+		<Route path="/:hashId" component={HashReader} />
+	</BrowserRouter>
 )
 
 export default App
