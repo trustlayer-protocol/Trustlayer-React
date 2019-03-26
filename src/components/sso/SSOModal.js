@@ -6,62 +6,56 @@ import { withStyles } from '@material-ui/styles';
 import LinkedInButton from './LinkedIn';
 
 
-export class SSOModal extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      open: true,
-    };
-  }
+const SSOModal = () => {
+  const {
+    classes: {
+      root,
+      buttonContainer,
+    },
+    open,
+    handleOnClose,
+    action,
+    link,
+  } = this.props;
 
+  const state = encodeURI(`{action: ${action}, link: ${link}}`)
 
-    handleOnClose = () => {
-      this.setState({ open: false });
-    }
-
-
-    render() {
-      const { open } = this.state;
-      const {
-        classes: {
-          root,
-          buttonContainer,
-        },
-      } = this.props;
-
-      return (
-        <Dialog
-          open={open}
-          onClose={this.handleOnClose}
+  return (
+    <Dialog
+      open={open}
+      onClose={handleOnClose}
+    >
+      <div className={root}>
+        <div>
+          <Typography variant="h5" gutterBottom> Please sign in</Typography>
+          <Typography variant="body1" gutterBottom>{'Confirm that it\'s really you.'}</Typography>
+        </div>
+        <div className={buttonContainer}>
+          <LinkedInButton
+            state={state} />
+        </div>
+        <Typography
+          variant="caption"
+          color="textSecondary"
+          gutterBottom
         >
-          <div className={root}>
-            <div>
-              <Typography variant="h5" gutterBottom> Please sign in</Typography>
-              <Typography variant="body1" gutterBottom>{'Confirm that it\'s really you.'}</Typography>
-            </div>
-            <div className={buttonContainer}>
-              <LinkedInButton />
-            </div>
-            <Typography
-              variant="caption"
-              color="textSecondary"
-              gutterBottom
-            >
-              We will protect your private information and use it only to provide this service.
-            </Typography>
-            <Link
-              target="_blank"
-              variant="body1"
-              href="https://trustbot.io/privacy-policy"
-            >
-              Read our privacy
-            </Link>
-          </div>
-        </Dialog>
-      );
-    }
+            We will protect your private information and use it only to provide this service.
+        </Typography>
+        <Link
+          target="_blank"
+          variant="body1"
+          href="https://trustbot.io/privacy-policy"
+        >
+            Read our privacy
+        </Link>
+      </div>
+    </Dialog>
+  );
 }
+
+export default SSOModal
+
 
 
 const styles = {
