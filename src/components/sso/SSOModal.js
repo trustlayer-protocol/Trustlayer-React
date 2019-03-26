@@ -5,7 +5,6 @@ import Link from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/styles';
 import LinkedInButton from './LinkedIn';
 
-
 export class SSOModal extends Component {
   constructor(props) {
     super(props);
@@ -15,54 +14,48 @@ export class SSOModal extends Component {
     };
   }
 
+	handleOnClose = () => {
+	  this.setState({ open: false });
+	}
 
-    handleOnClose = () => {
-      this.setState({ open: false });
-    }
+	render() {
+	  const { open } = this.state;
+	  const {
+	    classes: { root, buttonContainer },
+	  } = this.props;
 
+	  return (
+  <Dialog open={open} onClose={this.handleOnClose}>
+    <div className={root}>
+      <Typography variant="h5" gutterBottom>
+        {' '}
+						Please sign in
 
-    render() {
-      const { open } = this.state;
-      const {
-        classes: {
-          root,
-          buttonContainer,
-        },
-      } = this.props;
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        {"Confirm that it's really you."}
+      </Typography>
+      <div className={buttonContainer}>
+        <LinkedInButton />
+      </div>
+      <Typography variant="caption" color="textSecondary" gutterBottom>
+						We will protect your private information and use it only to provide
+						this service.
 
-      return (
-        <Dialog
-          open={open}
-          onClose={this.handleOnClose}
-        >
-          <div className={root}>
-            <div>
-              <Typography variant="h5" gutterBottom> Please sign in</Typography>
-              <Typography variant="body1" gutterBottom>{'Confirm that it\'s really you.'}</Typography>
-            </div>
-            <div className={buttonContainer}>
-              <LinkedInButton />
-            </div>
-            <Typography
-              variant="caption"
-              color="textSecondary"
-              gutterBottom
-            >
-              We will protect your private information and use it only to provide this service.
-            </Typography>
-            <Link
-              target="_blank"
-              variant="body1"
-              href="https://trustbot.io/privacy-policy"
-            >
-              Read our privacy
-            </Link>
-          </div>
-        </Dialog>
-      );
-    }
+      </Typography>
+      <Link
+        target="_blank"
+        variant="body1"
+        href="https://trustbot.io/privacy-policy"
+      >
+						Read our privacy
+
+      </Link>
+    </div>
+  </Dialog>
+	  );
+	}
 }
-
 
 const styles = {
   root: {
