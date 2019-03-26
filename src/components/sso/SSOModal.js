@@ -36,10 +36,8 @@ export class SSOModal extends Component {
           onClose={this.handleOnClose}
         >
           <div className={root}>
-            <div>
-              <Typography variant="h5" gutterBottom> Please sign in</Typography>
-              <Typography variant="body1" gutterBottom>{'Confirm that it\'s really you.'}</Typography>
-            </div>
+            <Typography variant="h5" gutterBottom> Please sign in</Typography>
+            <Typography variant="body1" gutterBottom>{'Confirm that it\'s really you.'}</Typography>
             <div className={buttonContainer}>
               <LinkedInButton />
             </div>
