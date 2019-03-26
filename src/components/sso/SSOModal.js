@@ -14,7 +14,6 @@ const SSOModal = ({ open, handleOnClose, action, link, classes }) => {
 			<div className={root}>
 				<div>
 					<Typography variant="h5" gutterBottom>
-						{' '}
 						Please sign in
 					</Typography>
 					<Typography variant="body1" gutterBottom>
