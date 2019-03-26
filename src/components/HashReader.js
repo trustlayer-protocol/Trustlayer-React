@@ -1,11 +1,12 @@
 import React from 'react'
+import UserCode from 'scenes/UserCode'
 
 const getFirstCharacter = text => text.charAt(0).toLowerCase()
 
 export default ({ match }) => {
 	switch (getFirstCharacter(match.params.hashId)) {
 		case 'u':
-			return <div>User code</div>
+			return <UserCode />
 
 		case 'a':
 			return <div>Agreement code</div>

@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/core": "^10.0.10",
+    "@emotion/styled": "^10.0.10",
     "@material-ui/core": "^3.9.2",
     "@material-ui/styles": "^3.0.0-alpha.10",
+    "emotion": "^10.0.9",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-router": "^5.0.0",
@@ -24,9 +27,9 @@
     ]
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "deploy": "npm run build && aws s3 sync build/ s3://trustlayer-node --cache-control max-age=0 --delete && aws configure set preview.cloudfront true && aws cloudfront create-invalidation --distribution-id E57RQ52N95502 --paths '/*'",
+    "start": "NODE_PATH=src react-scripts start",
+    "build": "NODE_PATH=src react-scripts build",
+    "deploy": "NODE_PATH=src npm run build && aws s3 sync build/ s3://trustlayer-node --cache-control max-age=0 --delete && aws configure set preview.cloudfront true && aws cloudfront create-invalidation --distribution-id E57RQ52N95502 --paths '/*'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
