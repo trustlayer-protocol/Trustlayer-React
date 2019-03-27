@@ -24,7 +24,7 @@ export default () => (
 			<Heading>Make NDAs automatic</Heading>
 			<AgreementBox />
 			<AdoptButton />
-			<SSOModal open />
+			<SSOModal action="adopt" open />
 		</Container>
 	</Root>
 )

@@ -5,10 +5,23 @@ import Link from '@material-ui/core/Link'
 import { withStyles } from '@material-ui/styles'
 import LinkedInButton from './LinkedIn'
 
-const SSOModal = ({ open, handleOnClose, action, link, classes }) => {
+const SSOModal = ({
+	open,
+	handleOnClose,
+	action,
+	link,
+	formId = null,
+	classes
+}) => {
 	const { root, buttonContainer } = classes
 
-	const state = encodeURI(`{ "action": "${action}", "link": "${link}"}`)
+	const stateObj = {
+		action,
+		link,
+		form_id: formId
+	}
+
+	const state = encodeURI(JSON.stringify(stateObj))
 	return (
 		<Dialog open={open} onClose={handleOnClose}>
 			<div className={root}>
