@@ -51,7 +51,7 @@ export default () => {
 				<button>Cancel</button>
 				<button>Confirm</button>
 			</Modal>
-			<SSOModal />
+			<SSOModal action="adopt" open />
 		</>
 	)
 }

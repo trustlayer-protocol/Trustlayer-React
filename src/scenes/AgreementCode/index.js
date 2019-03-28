@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import UserBlurb from 'components/UserBlurb'
-import AgreementBox from 'components/AgreementBox'
-import PdfButton from 'components/buttons/PDF'
+import UserBlurb from '../../components/UserBlurb'
+import AgreementBox from '../../components/AgreementBox'
+import PdfButton from '../../components/buttons/PDF'
 
 const Root = styled.div`
 	margin: 40px 0;
