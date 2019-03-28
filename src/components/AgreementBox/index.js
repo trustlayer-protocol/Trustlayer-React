@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import Avatars from 'components/Avatars'
 import Agreement from 'components/Agreement'
+import Menu from './Menu.js'
 
 const VerificationCode = styled.p`
 	background: #ddd;
@@ -13,10 +14,11 @@ const Root = styled.div`
 	padding: 20px;
 `
 
-export default () => (
+export default ({ agreement, showMenu = false }) => (
 	<Root>
+		{showMenu && <Menu />}
 		<Avatars />
-		<Agreement />
+		<Agreement agreement={agreement} />
 		<VerificationCode>
 			Verification code XlkdfFDHLdsfklsdjf123dsfadslf3Alkjdf1SDFjo4A2
 		</VerificationCode>

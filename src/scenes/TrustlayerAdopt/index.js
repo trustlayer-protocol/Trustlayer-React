@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import AgreementBox from 'components/AgreementBox'
-import AdoptButton from 'components/buttons/Adopt'
+import AdoptButton from 'components/buttons/Green'
+import { useHttp } from 'hooks/http'
+import Modal from 'components/Modal'
+import SSOModal from 'components/sso/SSOModal'
 
 const Root = styled.div`
 	margin: 40px 0;
@@ -17,12 +20,38 @@ const Heading = styled.div`
 	margin-bottom: 20px;
 `
 
-export default () => (
-	<Root>
-		<Container>
-			<Heading>Make NDAs automatic</Heading>
-			<AgreementBox />
-			<AdoptButton />
-		</Container>
-	</Root>
-)
+export default () => {
+	const [isLoading, fetchedData] = useHttp(
+		'http://localhost:3002/get/default-form'
+	)
+
+	const agreementContent = fetchedData ? fetchedData.content : ''
+
+	const [isModalOpen, setModalState] = useState(false)
+
+	const displayConfirmMessage = () => {
+		setModalState(true)
+	}
+
+	const closeConfirmMessage = () => {
+		setModalState(false)
+	}
+
+	return (
+		<>
+			<Root>
+				<Container>
+					<Heading>Make NDAs automatic</Heading>
+					<AgreementBox agreement={agreementContent} />
+					<AdoptButton text="Adopt" onClick={displayConfirmMessage} />
+				</Container>
+			</Root>
+			<Modal open={isModalOpen} onClose={closeConfirmMessage}>
+				This is a test modal
+				<button>Cancel</button>
+				<button>Confirm</button>
+			</Modal>
+			<SSOModal />
+		</>
+	)
+}
