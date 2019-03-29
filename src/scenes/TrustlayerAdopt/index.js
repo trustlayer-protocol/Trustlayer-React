@@ -5,6 +5,7 @@ import AdoptButton from 'components/buttons/Green'
 import { useHttp } from 'hooks/http'
 import Modal from 'components/Modal'
 import SSOModal from 'components/sso/SSOModal'
+import _ from 'lodash'
 
 const Root = styled.div`
 	margin: 40px 0;
@@ -25,7 +26,7 @@ export default () => {
 		'http://localhost:3002/get/default-form'
 	)
 
-	const agreementContent = fetchedData ? fetchedData.content : ''
+	const agreementContent = _.get(fetchedData, 'form.content', '')
 
 	const [isModalOpen, setModalState] = useState(false)
 
@@ -34,6 +35,13 @@ export default () => {
 	}
 
 	const closeConfirmMessage = () => {
+		setModalState(false)
+	}
+
+	const [isSsoOpen, setSsoState] = useState(false)
+
+	const displaySsoModal = () => {
+		setSsoState(true)
 		setModalState(false)
 	}
 
@@ -48,8 +56,8 @@ export default () => {
 			</Root>
 			<Modal open={isModalOpen} onClose={closeConfirmMessage}>
 				This is a test modal
-				<button>Cancel</button>
-				<button>Confirm</button>
+				<button onClick={closeConfirmMessage}>Cancel</button>
+				<button onClick={displaySsoModal}>Confirm</button>
 			</Modal>
 			<SSOModal action="adopt" open formId={2} link="HfM5T5LVKhI" />
 		</>
