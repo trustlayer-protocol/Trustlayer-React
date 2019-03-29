@@ -9,6 +9,13 @@ const Button = styled.button`
 	padding: 15px 0;
 	border: none;
 	cursor: pointer;
+	&:disabled {
+		background: #ddd;
+	}
 `
 
-export default ({ text, onClick }) => <Button onClick={onClick}>{text}</Button>
+export default ({ disabled, text, onClick }) => (
+	<Button disabled={disabled} onClick={onClick}>
+		{text}
+	</Button>
+)

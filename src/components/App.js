@@ -7,6 +7,7 @@ import TrustlayerAdopt from 'scenes/TrustlayerAdopt'
 export default () => (
 	<BrowserRouter>
 		<Route exact path="/" component={TrustlayerAdopt} />
+		<Route path="/sso-success" component={TrustlayerAdopt} />
 		<Route path="/:hashId" component={HashReader} />
 	</BrowserRouter>
 )

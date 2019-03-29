@@ -17,7 +17,7 @@ export default () => (
 	<Root>
 		<Container>
 			<UserBlurb />
-			<AgreementBox />
+			<AgreementBox showMenu={true} />
 			<PdfButton />
 		</Container>
 	</Root>
