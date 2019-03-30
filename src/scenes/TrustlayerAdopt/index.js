@@ -29,6 +29,34 @@ const ButtonContainer = styled.div`
 	left: 0;
 `
 
+const ConfirmButton = styled.div`
+	background: #4caf50;
+	color: white;
+	width: 100%;
+	padding: 10px 0;
+	text-align: center;
+	font-size: 18px;
+	cursor: pointer;
+`
+
+const CancelButton = styled.div`
+	background: transparent;
+	color: #1e88e5;
+	width: 100%;
+	padding: 10px 0;
+	text-align: center;
+	font-size: 18px;
+	font-weight: 300;
+	cursor: pointer;
+`
+
+const Link = styled.a`
+	display: inline-block;
+	color: #1e88e5;
+	text-decoration: none;
+	margin-bottom: 20px;
+`
+
 export default () => {
 	const [isLoading, fetchedData] = useHttp(
 		'http://localhost:3002/get/default-form'
@@ -89,9 +117,19 @@ export default () => {
 				</Container>
 			</Root>
 			<Modal open={isModalOpen} onClose={closeConfirmMessage}>
-				This is a test modal
-				<button onClick={closeConfirmMessage}>Cancel</button>
-				<button onClick={displaySsoModal}>Confirm</button>
+				<h3>
+					Confirm that you have read and intend to be legally bound by this
+					agreement.
+				</h3>
+				<p>You also agree:</p>
+				<p>Trustbot is not your lawyer is not providing any legal advice.</p>
+				<p>
+					You release and will protect Trustbot from any liability arising from
+					your use of this service.
+				</p>
+				<Link href="https://trustbot.io/terms">Read our terms</Link>
+				<ConfirmButton onClick={displaySsoModal}>Confirm</ConfirmButton>
+				<CancelButton onClick={closeConfirmMessage}>Cancel</CancelButton>
 			</Modal>
 			<SSOModal action="adopt" formId={2} open={isSsoOpen} />
 			<ButtonContainer>
