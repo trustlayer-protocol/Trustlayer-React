@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import AgreementBox from 'components/AgreementBox'
 import AdoptButton from 'components/buttons/Green'
