@@ -9,8 +9,12 @@ const Button = styled.button`
 	padding: 15px 0;
 	border: none;
 	cursor: pointer;
+	transition: background 250ms;
 	&:disabled {
 		background: #ddd;
+	}
+	&:hover {
+		background: #388e3c;
 	}
 `
 
