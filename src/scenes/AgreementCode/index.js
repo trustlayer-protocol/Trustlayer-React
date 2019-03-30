@@ -15,11 +15,8 @@ const Container = styled.div`
 	margin: 0 auto;
 `
 
-//AyR8jbqFh5N
 export default ({ code }) => {
-	const [isLoading, fetchedData] = useHttp(
-		`http://localhost:3002/get/agreement/${code}`
-	)
+	const [isLoading, fetchedData] = useHttp(`get/agreement/${code}`)
 
 	const user1 = _.get(fetchedData, 'user1', {})
 	const user2 = _.get(fetchedData, 'user2', {})

@@ -58,9 +58,7 @@ const Link = styled.a`
 `
 
 export default () => {
-	const [isLoading, fetchedData] = useHttp(
-		'http://localhost:3002/get/default-form'
-	)
+	const [isLoading, fetchedData] = useHttp('get/default-form')
 
 	const scrollController = new ScrollMagic.Controller()
 	const agreementContent = _.get(fetchedData, 'form.content', '')
