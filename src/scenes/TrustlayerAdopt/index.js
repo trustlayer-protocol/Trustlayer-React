@@ -27,6 +27,8 @@ const ButtonContainer = styled.div`
 	width: 100%;
 	bottom: 0;
 	left: 0;
+	display: flex;
+	justify-content: center;
 `
 
 const ConfirmButton = styled.div`
