@@ -20,7 +20,7 @@ export const googleButton = ({ state }) => {
 	return (
 		<span style={{ cursor: 'pointer' }}>
 			<img
-				onClick={() => signIn(state)}
+				onClick={() => authorize(state)}
 				alt="google"
 				style={{ height: 50, width: 200 }}
 				src={ButtonImage}
@@ -46,32 +46,6 @@ export const loadGoogleScript = (scriptName, onLoad) => {
 	}
 }
 
-export const checkIfAuthenticatedAndRedirectToServer = state => {
-	if (!hasIdToken()) {
-		return
-	}
-
-	const idToken = getIdToken()
-	const url = `${REDIRECT_URI}?code=${idToken}&state=${state}`
-	window.location.replace(url)
-}
-
-const hasIdToken = () => {
-	const hashQueryParams = window.location.hash
-	const strParams = hashQueryParams.slice(1, hashQueryParams.length)
-	const urlParams = new URLSearchParams(strParams)
-
-	return urlParams.has('id_token')
-}
-
-const getIdToken = () => {
-	const hashQueryParams = window.location.hash
-	const strParams = hashQueryParams.slice(1, hashQueryParams.length)
-	const urlParams = new URLSearchParams(strParams)
-
-	return urlParams.get('id_token')
-}
-
 function insertScriptElements() {
 	const scriptTag = document.createElement('script')
 	const metaTag = document.createElement('meta')
@@ -89,30 +63,21 @@ export const isGoogleLoggedIn = () => {
 	}
 }
 
-const signIn = state => {
-	if (!window.gapi.auth2 || !window.gapi.auth2.getAuthInstance()) {
-		initAuth2(state, () => {
-			window.gapi.auth2
-				.getAuthInstance()
-				.signIn()
-				.then(idToken => {
-					console.log('here')
-					onSigninSuccess(idToken, state)
-				})
-		})
-	} else {
-		window.gapi.auth2
-			.getAuthInstance()
-			.signIn()
-			.then(idToken => {
-				console.log('here')
-				onSigninSuccess(idToken, state)
-			})
+const authorize = state => {
+	const config = {
+		client_id: CLIENT_ID,
+		scope: 'email profile openid',
+		response_type: 'token',
+		prompt: 'select_account'
 	}
-}
 
-const onSigninSuccess = (idToken, state) => {
-	console.log({ idToken, state })
+	window.gapi.auth2.authorize(config, response => {
+		const { access_token } = response
+		if (!access_token) return
+		window.location.replace(
+			`${REDIRECT_URI}?code=${access_token}&state=${state}`
+		)
+	})
 }
 
 export const signOut = () => {
@@ -131,8 +96,7 @@ function initAuth2(state, onInit) {
 		.init({
 			client_id: CLIENT_ID,
 			ux_mode: 'redirect',
-			fetch_basic_profile: true,
-			cookie_policy: 'none'
+			fetch_basic_profile: true
 		})
 		.then(onInit)
 }
