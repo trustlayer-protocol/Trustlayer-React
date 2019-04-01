@@ -6,6 +6,7 @@ import Modal from 'components/Modal'
 import SSOModal from 'components/sso/SSOModal'
 import * as ScrollMagic from 'scrollmagic'
 import ScrollSnackbar from 'components/ScrollSnackbar'
+import Header from './Header.js'
 import _ from 'lodash'
 import {
 	Root,
@@ -70,7 +71,7 @@ export default () => {
 		<>
 			<Root>
 				<Container>
-					<Heading>Make NDAs automatic</Heading>
+					<Header />
 					<AgreementBox
 						avatars={avatars}
 						hash={agreementHash}

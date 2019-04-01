@@ -6,6 +6,7 @@ import { useHttp } from 'hooks/http'
 import Modal from 'components/Modal'
 import SSOModal from 'components/sso/SSOModal'
 import * as ScrollMagic from 'scrollmagic'
+import ScrollSnackbar from 'components/ScrollSnackbar'
 import _ from 'lodash'
 import {
 	Root,
@@ -105,6 +106,7 @@ export default ({ code }) => {
 					onClick={displayConfirmMessage}
 				/>
 			</ButtonContainer>
+			<ScrollSnackbar />
 		</>
 	)
 }
