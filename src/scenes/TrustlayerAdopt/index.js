@@ -11,7 +11,6 @@ import _ from 'lodash'
 import {
 	Root,
 	Container,
-	Heading,
 	ButtonContainer,
 	ConfirmButton,
 	CancelButton,
