@@ -1,13 +1,14 @@
 import React from 'react'
 import 'typeface-roboto'
 import HashReader from './HashReader.js'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { Switch, BrowserRouter, Route } from 'react-router-dom'
 import TrustlayerAdopt from 'scenes/TrustlayerAdopt'
 import SsoSuccess from 'scenes/SsoSuccess'
 import styled from '@emotion/styled'
 
 const Root = styled.div`
 	padding-top: 36px;
+	margin: 0 20px;
 `
 
 const Header = styled.div`
@@ -45,9 +46,12 @@ export default () => (
 				</Link>
 			</Header>
 			<BrowserRouter>
-				<Route exact path="/" component={TrustlayerAdopt} />
-				<Route path="/sso-success" component={SsoSuccess} />
-				<Route exact path="/:hashId" component={HashReader} />
+				<Switch>
+					<Route exact path="/" component={TrustlayerAdopt} />
+					<Route path="/sso-success" component={SsoSuccess} />
+					<Route path="/login" component={SsoSuccess} />
+					<Route exact path="/:hashId" component={HashReader} />
+				</Switch>
 			</BrowserRouter>
 		</Root>
 	</>

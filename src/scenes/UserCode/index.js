@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import styled from '@emotion/styled'
 import UserBlurb from 'components/UserBlurb'
 import AgreementBox from 'components/AgreementBox'
 import AdoptButton from 'components/buttons/Green'
@@ -7,53 +6,16 @@ import { useHttp } from 'hooks/http'
 import Modal from 'components/Modal'
 import SSOModal from 'components/sso/SSOModal'
 import * as ScrollMagic from 'scrollmagic'
+import ScrollSnackbar from 'components/ScrollSnackbar'
 import _ from 'lodash'
-
-const Root = styled.div`
-	margin: 40px 0 80px;
-`
-
-const Container = styled.div`
-	max-width: 670px;
-	margin: 0 auto;
-`
-
-const ButtonContainer = styled.div`
-	position: fixed;
-	width: 100%;
-	bottom: 0;
-	left: 0;
-	display: flex;
-	justify-content: center;
-`
-
-const ConfirmButton = styled.div`
-	background: #4caf50;
-	color: white;
-	width: 100%;
-	padding: 10px 0;
-	text-align: center;
-	font-size: 18px;
-	cursor: pointer;
-`
-
-const CancelButton = styled.div`
-	background: transparent;
-	color: #1e88e5;
-	width: 100%;
-	padding: 10px 0;
-	text-align: center;
-	font-size: 18px;
-	font-weight: 300;
-	cursor: pointer;
-`
-
-const Link = styled.a`
-	display: inline-block;
-	color: #1e88e5;
-	text-decoration: none;
-	margin-bottom: 20px;
-`
+import {
+	Root,
+	Container,
+	ButtonContainer,
+	ConfirmButton,
+	CancelButton,
+	Link
+} from 'services/styles'
 
 export default ({ code }) => {
 	const [isLoading, fetchedData] = useHttp(`get/user/${code}`)
@@ -144,6 +106,7 @@ export default ({ code }) => {
 					onClick={displayConfirmMessage}
 				/>
 			</ButtonContainer>
+			<ScrollSnackbar />
 		</>
 	)
 }
