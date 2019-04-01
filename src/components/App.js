@@ -48,6 +48,7 @@ export default () => (
 				<Switch>
 					<Route exact path="/" component={TrustlayerAdopt} />
 					<Route path="/sso-success" component={SsoSuccess} />
+					<Route path="/login" component={SsoSuccess} />
 					<Route exact path="/:hashId" component={HashReader} />
 				</Switch>
 			</BrowserRouter>
