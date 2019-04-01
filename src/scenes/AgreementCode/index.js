@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import UserBlurb from 'components/UserBlurb'
 import AgreementBox from 'components/AgreementBox'
-import PdfButton from 'components/buttons/PDF'
+import PdfButton from 'components/buttons/BlueOutline'
 import { useHttp } from 'hooks/http'
+import SSOModal from 'components/sso/SSOModal'
 import _ from 'lodash'
 
 const Root = styled.div`
-	margin: 40px 0 8px;
+	margin: 40px 0 80px;
 `
 
 const Container = styled.div`
@@ -20,6 +21,8 @@ const ButtonContainer = styled.div`
 	width: 100%;
 	bottom: 0;
 	left: 0;
+	display: flex;
+	justify-content: center;
 `
 
 export default ({ code }) => {
@@ -29,6 +32,12 @@ export default ({ code }) => {
 	const user2 = _.get(fetchedData, 'user2', {})
 	const agreementContent = _.get(fetchedData, 'form.content', '')
 	const hash = _.get(fetchedData, 'agreement.form_hash', '')
+
+	const [isSsoOpen, setSsoState] = useState(false)
+
+	const getPdf = () => {
+		setSsoState(true)
+	}
 
 	return (
 		<Root>
@@ -44,8 +53,10 @@ export default ({ code }) => {
 					email={user2.email}
 				/>
 				<AgreementBox hash={hash} agreement={agreementContent} />
+
+				<SSOModal action="get-pdf" link={code} open={isSsoOpen} />
 				<ButtonContainer>
-					<PdfButton />
+					<PdfButton text="GET PDF" onClick={getPdf} />
 				</ButtonContainer>
 			</Container>
 		</Root>

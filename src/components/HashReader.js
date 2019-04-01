@@ -1,5 +1,6 @@
 import React from 'react'
 import UserCode from 'scenes/UserCode'
+import AdoptCode from 'scenes/AdoptCode'
 import AgreementCode from 'scenes/AgreementCode'
 import HomeCode from 'scenes/HomeCode'
 
@@ -16,6 +17,9 @@ export default ({ location, match }) => {
 	switch (getFirstCharacter(code)) {
 		case 'u':
 			return <UserCode code={code} />
+
+		case 'd':
+			return <AdoptCode code={code} />
 
 		case 'a':
 			return <AgreementCode code={code} />

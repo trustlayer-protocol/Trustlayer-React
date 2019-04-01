@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
+import UserBlurb from 'components/UserBlurb'
 import AgreementBox from 'components/AgreementBox'
 import AdoptButton from 'components/buttons/Green'
 import { useHttp } from 'hooks/http'
@@ -15,11 +16,6 @@ const Root = styled.div`
 const Container = styled.div`
 	max-width: 670px;
 	margin: 0 auto;
-`
-
-const Heading = styled.div`
-	font-size: 40px;
-	margin-bottom: 20px;
 `
 
 const ButtonContainer = styled.div`
@@ -59,16 +55,19 @@ const Link = styled.a`
 	margin-bottom: 20px;
 `
 
-export default () => {
-	const [isLoading, fetchedData] = useHttp('get/default-form')
+export default ({ code }) => {
+	const [isLoading, fetchedData] = useHttp(`get/user/${code}`)
 
 	const scrollController = new ScrollMagic.Controller()
-	const agreementContent = _.get(fetchedData, 'form.content', '')
-	const agreementHash = _.get(fetchedData, 'form.hash', '')
-	const avatars = _.get(fetchedData, 'avatars', [])
+	const agreementContent = _.get(fetchedData, 'recent_form.content', '')
+	const user = _.get(fetchedData, 'user', {})
+	const actionLink = _.get(fetchedData, 'actions[0].link', '')
+	const formId = _.get(fetchedData, 'actions[0].form_id', '')
+	const hash = _.get(fetchedData, 'actions[0].form_hash', '')
+
 	const [isButtonDisabled, setButtonState] = useState(true)
 
-	if (agreementHash) {
+	if (hash) {
 		let browserHeight = Math.max(
 			document.documentElement.clientHeight,
 			window.innerHeight || 0
@@ -85,8 +84,6 @@ export default () => {
 				}
 			})
 	}
-
-	//scrollController.destroy(true)
 	const [isModalOpen, setModalState] = useState(false)
 
 	const displayConfirmMessage = () => {
@@ -108,12 +105,12 @@ export default () => {
 		<>
 			<Root>
 				<Container>
-					<Heading>Make NDAs automatic</Heading>
-					<AgreementBox
-						avatars={avatars}
-						hash={agreementHash}
-						agreement={agreementContent}
+					<UserBlurb
+						avatarUrl={user.avatar_url}
+						name={user.full_name}
+						email={user.email}
 					/>
+					<AgreementBox hash={hash} agreement={agreementContent} />
 				</Container>
 			</Root>
 			<Modal open={isModalOpen} onClose={closeConfirmMessage}>
@@ -131,7 +128,13 @@ export default () => {
 				<ConfirmButton onClick={displaySsoModal}>Confirm</ConfirmButton>
 				<CancelButton onClick={closeConfirmMessage}>Cancel</CancelButton>
 			</Modal>
-			<SSOModal action="adopt" formId={2} open={isSsoOpen} />
+			<SSOModal
+				action="adopt"
+				link={actionLink}
+				formId={formId}
+				open={isSsoOpen}
+			/>
+
 			<ButtonContainer>
 				<AdoptButton
 					disabled={isButtonDisabled}

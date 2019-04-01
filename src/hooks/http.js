@@ -7,7 +7,7 @@ export const useHttp = (url, dependencies = []) => {
 	const domain =
 		process.env.NODE_ENV === 'development'
 			? 'http://localhost:8081/'
-			: 'https://trustlayer.us-west-2.elasticbeanstalk.com/'
+			: 'https://trustlayerapi.trustbot.io/'
 
 	useEffect(() => {
 		setIsLoading(true)
