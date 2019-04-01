@@ -35,10 +35,11 @@ class SSOModal extends Component {
 	}
 
 	getStateObject = () => {
-		const { action, link, formId } = this.props
+		const { action, link, formId = null, userId = null } = this.props
 		const stateObj = {
 			action,
 			link,
+			user_id: userId,
 			form_id: formId
 		}
 

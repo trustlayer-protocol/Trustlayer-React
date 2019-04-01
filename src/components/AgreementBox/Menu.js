@@ -20,7 +20,7 @@ const useMenuToggle = () => {
 	return { menuEl, openMenu, closeMenu }
 }
 
-export default () => {
+export default ({ clickRevoke }) => {
 	const { menuEl, openMenu, closeMenu } = useMenuToggle()
 	const isMenuOpen = Boolean(menuEl)
 
@@ -48,7 +48,7 @@ export default () => {
 				}}
 			>
 				<List>
-					<ListItem button>
+					<ListItem button onClick={clickRevoke}>
 						<ListItemText primary="Revoke adoption" />
 					</ListItem>
 					<ListItem button>

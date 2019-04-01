@@ -4,57 +4,33 @@ import UserBlurb from 'components/UserBlurb'
 import AgreementBox from 'components/AgreementBox'
 import { useHttp } from 'hooks/http'
 import Modal from 'components/Modal'
-import PdfButton from 'components/buttons/PDF'
+import Button from 'components/buttons/BlueOutline'
 import SSOModal from 'components/sso/SSOModal'
-
-import * as ScrollMagic from 'scrollmagic'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import {
+	Root,
+	Container,
+	ButtonContainer,
+	AlertButton,
+	CancelButton
+} from 'services/styles'
 import _ from 'lodash'
+import Snackbar from './Snackbar'
 
-const Root = styled.div`
-	margin: 40px 0 80px;
-`
+export default () => {
+	const userCode = 'UvBFJpfE6Lq' // Temp development until login is setup
+	const [isLoading, fetchedData] = useHttp(`get/user/${userCode}`)
 
-const Container = styled.div`
-	max-width: 670px;
-	margin: 0 auto;
-`
-
-const ButtonContainer = styled.div`
-	position: fixed;
-	width: 100%;
-	bottom: 0;
-	left: 0;
-`
-
-export default ({ code }) => {
-	const [isLoading, fetchedData] = useHttp(`get/user/${code}`)
-
-	const scrollController = new ScrollMagic.Controller()
 	const agreementContent = _.get(fetchedData, 'recent_form.content', '')
 	const user = _.get(fetchedData, 'user', {})
-	const actionLink = _.get(fetchedData, 'actions[0].link', '')
 	const formId = _.get(fetchedData, 'actions[0].form_id', '')
 	const hash = _.get(fetchedData, 'actions[0].form_hash', '')
+	const actions = _.get(fetchedData, `actions`, [])
+
+	const actionLink = actions.length > 0 ? actions[actions.length - 1].link : ''
 
 	const [isButtonDisabled, setButtonState] = useState(true)
 
-	if (hash) {
-		let browserHeight = Math.max(
-			document.documentElement.clientHeight,
-			window.innerHeight || 0
-		)
-
-		new ScrollMagic.Scene({
-			offset: document.body.scrollHeight - browserHeight - 200,
-			triggerHook: 1
-		})
-			.addTo(scrollController)
-			.on('enter leave update', e => {
-				if (e.type === 'enter' && e.scrollDirection === 'FORWARD') {
-					setButtonState(false)
-				}
-			})
-	}
 	const [isModalOpen, setModalState] = useState(false)
 
 	const displayConfirmMessage = () => {
@@ -72,6 +48,15 @@ export default ({ code }) => {
 		setModalState(false)
 	}
 
+	const [isCopied, setIsCopied] = useState(false)
+	const onClipboardCopy = () => {
+		setIsCopied(true)
+	}
+
+	const closeClipboardSnackbar = () => {
+		setIsCopied(false)
+	}
+
 	return (
 		<>
 			<Root>
@@ -81,23 +66,41 @@ export default ({ code }) => {
 						name={user.full_name}
 						email={user.email}
 					/>
-					<AgreementBox hash={hash} agreement={agreementContent} />
+					<AgreementBox
+						hash={hash}
+						agreement={agreementContent}
+						clickRevoke={displayConfirmMessage}
+						showMenu={true}
+					/>
 				</Container>
 			</Root>
 			<Modal open={isModalOpen} onClose={closeConfirmMessage}>
-				This is a test modal
-				<button onClick={closeConfirmMessage}>Cancel</button>
-				<button onClick={displaySsoModal}>Confirm</button>
+				<h3>
+					Are you sure you want to revoke your adoption of this agreement?
+				</h3>
+				<p>
+					This will not revoke or affect any previous agreements, which will
+					continue in effect. Consult with your legal counsel if you need to
+					terminate any existing obligations.
+				</p>
+				<AlertButton onClick={displaySsoModal}>REVOKE ADOPTION</AlertButton>
+				<CancelButton onClick={closeConfirmMessage}>Cancel</CancelButton>
 			</Modal>
 			<SSOModal
 				action="revoke"
 				link={actionLink}
-				formId={formId}
+				userId={user.id}
 				open={isSsoOpen}
 			/>
 			<ButtonContainer>
-				<PdfButton />
+				<CopyToClipboard
+					text={`https://trustlayer.trustbot.io/${userCode}`}
+					onCopy={onClipboardCopy}
+				>
+					<Button text="GET INVITE LINK" />
+				</CopyToClipboard>
 			</ButtonContainer>
+			<Snackbar open={isCopied} handleClose={closeClipboardSnackbar} />
 		</>
 	)
 }

@@ -14,9 +14,24 @@ const Root = styled.div`
 	padding: 20px;
 `
 
-export default ({ avatars, hash = '', agreement, showMenu = false }) => (
+const MenuWrapper = styled.div`
+	display: flex;
+	justify-content: flex-end;
+`
+
+export default ({
+	avatars,
+	hash = '',
+	agreement,
+	clickRevoke,
+	showMenu = false
+}) => (
 	<Root>
-		{showMenu && <Menu />}
+		{showMenu && (
+			<MenuWrapper>
+				<Menu clickRevoke={clickRevoke} />
+			</MenuWrapper>
+		)}
 		<Avatars avatars={avatars} />
 		<Agreement agreement={agreement} />
 		<VerificationCode>Verification code {hash}</VerificationCode>
