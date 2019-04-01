@@ -8,6 +8,7 @@ import styled from '@emotion/styled'
 
 const Root = styled.div`
 	padding-top: 36px;
+	margin: 0 20px;
 `
 
 const Header = styled.div`

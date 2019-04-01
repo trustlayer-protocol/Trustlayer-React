@@ -10,7 +10,7 @@ export const Container = styled.div`
 `
 
 export const Heading = styled.div`
-	font-size: 40px;
+	font-size: 32px;
 	margin-bottom: 20px;
 `
 

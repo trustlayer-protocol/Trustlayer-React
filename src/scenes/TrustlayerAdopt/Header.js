@@ -27,12 +27,13 @@ const Number = styled.span`
 	height: ${numberSize}px;
 	border-radius: 100px;
 `
+
 export default () => (
 	<>
 		<Heading>Easiest NDA ever (free)</Heading>
 		<List>
 			<Item>
-				<Number>1</Number> Read, adopt and share your link with anyone
+				<Number>1</Number> Read, adopt and share your link
 			</Item>
 			<Item>
 				<Number>2</Number> They adopt and your NDA activates
