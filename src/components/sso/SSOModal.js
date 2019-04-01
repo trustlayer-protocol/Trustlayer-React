@@ -1,20 +1,30 @@
 import React from 'react'
-import Dialog from '@material-ui/core/Dialog'
+import styled from '@emotion/styled'
+import Modal from 'components/Modal'
 import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
-import { withStyles } from '@material-ui/styles'
 import LinkedInButton from './LinkedIn'
 
-const SSOModal = ({
-	open,
-	handleOnClose,
-	action,
-	link,
-	formId = null,
-	classes
-}) => {
-	const { root, buttonContainer } = classes
+const Root = styled.div`
+	display: 'flex',
+	flex-flow: 'column'
+`
 
+const Link = styled.a`
+	display: inline-block;
+	color: #1e88e5;
+	text-decoration: none;
+	margin-bottom: 20px;
+`
+const ButtonContainer = styled.div`
+	flex: 1;
+	padding-top: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 20px;
+`
+
+const SSOModal = ({ open, handleOnClose, action, link, formId = null }) => {
 	const stateObj = {
 		action,
 		link,
@@ -23,51 +33,25 @@ const SSOModal = ({
 
 	const state = encodeURI(JSON.stringify(stateObj))
 	return (
-		<Dialog open={open} onClose={handleOnClose}>
-			<div className={root}>
+		<Modal open={open} onClose={handleOnClose}>
+			<Root>
 				<div>
-					<Typography variant="h5" gutterBottom>
-						Please sign in
-					</Typography>
-					<Typography variant="body1" gutterBottom>
-						{"Confirm that it's really you."}
-					</Typography>
+					<h3>Please sign in</h3>
+					<p>Confirm that it's really you.</p>
 				</div>
-				<div className={buttonContainer}>
+				<ButtonContainer>
 					<LinkedInButton state={state} />
-				</div>
+				</ButtonContainer>
 				<Typography variant="caption" color="textSecondary" gutterBottom>
 					We will protect your private information and use it only to provide
 					this service.
 				</Typography>
-				<Link
-					target="_blank"
-					variant="body1"
-					href="https://trustbot.io/privacy-policy"
-				>
+				<Link target="_blank" href="https://trustbot.io/privacy-policy">
 					Read our privacy
 				</Link>
-			</div>
-		</Dialog>
+			</Root>
+		</Modal>
 	)
 }
 
-const styles = {
-	root: {
-		minWidth: 250,
-		minHeight: 350,
-		maxWidth: 250,
-		padding: 16,
-		display: 'flex',
-		flexFlow: 'column'
-	},
-	buttonContainer: {
-		flex: 1,
-		paddingTop: 20,
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center'
-	}
-}
-
-export default withStyles(styles)(SSOModal)
+export default SSOModal

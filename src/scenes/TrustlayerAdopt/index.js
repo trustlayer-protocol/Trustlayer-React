@@ -104,6 +104,10 @@ export default () => {
 		setModalState(false)
 	}
 
+	const closeSsoModal = () => {
+		setSsoState(false)
+	}
+
 	return (
 		<>
 			<Root>
@@ -133,7 +137,12 @@ export default () => {
 				<ConfirmButton onClick={displaySsoModal}>Confirm</ConfirmButton>
 				<CancelButton onClick={closeConfirmMessage}>Cancel</CancelButton>
 			</Modal>
-			<SSOModal action="adopt" formId={2} open={isSsoOpen} />
+			<SSOModal
+				handleOnClose={closeSsoModal}
+				action="adopt"
+				formId={2}
+				open={isSsoOpen}
+			/>
 			<ButtonContainer>
 				<AdoptButton
 					disabled={isButtonDisabled}
