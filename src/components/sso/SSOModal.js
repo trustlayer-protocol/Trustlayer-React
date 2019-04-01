@@ -47,7 +47,7 @@ const SSOModal = ({ open, handleOnClose, action, link, formId = null }) => {
 					this service.
 				</Typography>
 				<Link target="_blank" href="https://trustbot.io/privacy-policy">
-					Read our privacy
+					Read our privacy policy
 				</Link>
 			</Root>
 		</Modal>
