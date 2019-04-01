@@ -141,7 +141,7 @@ export default () => {
 				handleOnClose={closeSsoModal}
 				action="adopt"
 				formId={2}
-				open={isSsoOpen}
+				open={true}
 			/>
 			<ButtonContainer>
 				<AdoptButton
