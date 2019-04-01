@@ -127,7 +127,9 @@ export default () => {
 					You release and will protect Trustbot from any liability arising from
 					your use of this service.
 				</p>
-				<Link href="https://trustbot.io/terms">Read our terms</Link>
+				<Link target="_blank" href="https://trustbot.io/terms">
+					Read our terms
+				</Link>
 				<ConfirmButton onClick={displaySsoModal}>Confirm</ConfirmButton>
 				<CancelButton onClick={closeConfirmMessage}>Cancel</CancelButton>
 			</Modal>
