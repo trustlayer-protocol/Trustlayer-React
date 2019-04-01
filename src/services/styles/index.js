@@ -33,6 +33,16 @@ export const ConfirmButton = styled.div`
 	cursor: pointer;
 `
 
+export const AlertButton = styled.div`
+	background: #e53935;
+	color: white;
+	width: 100%;
+	padding: 10px 0;
+	text-align: center;
+	font-size: 18px;
+	cursor: pointer;
+`
+
 export const CancelButton = styled.div`
 	background: transparent;
 	color: #1e88e5;

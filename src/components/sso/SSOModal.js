@@ -24,10 +24,18 @@ const ButtonContainer = styled.div`
 	margin-bottom: 20px;
 `
 
-const SSOModal = ({ open, handleOnClose, action, link, formId = null }) => {
+const SSOModal = ({
+	open,
+	handleOnClose,
+	action,
+	link,
+	userId = null,
+	formId = null
+}) => {
 	const stateObj = {
 		action,
 		link,
+		user_id: userId,
 		form_id: formId
 	}
 
