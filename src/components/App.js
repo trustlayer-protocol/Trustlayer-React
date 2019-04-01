@@ -36,7 +36,13 @@ export default () => (
 	<>
 		<Root>
 			<Header>
-				Trustlayer | <Link href="https://trustbot.io">Trustbot.io</Link>
+				<Link target="_blank" href="https://trustlayer.org">
+					Trustlayer
+				</Link>{' '}
+				|{' '}
+				<Link target="_blank" href="https://trustbot.io">
+					Trustbot.io
+				</Link>
 			</Header>
 			<BrowserRouter>
 				<Route exact path="/" component={TrustlayerAdopt} />
