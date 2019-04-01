@@ -1,24 +1,60 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-const Avatar = styled.div`
-	background: #333;
-	width: 28px;
-	height: 28px;
-	border-radius: 50px;
-	margin-right: 5px;
-`
+//const Avatar = styled.div`
+//background: #333;
+//width: 28px;
+//height: 28px;
+//border-radius: 50px;
+//margin-right: 5px;
+//`
 
 const Avatars = styled.div`
 	display: flex;
 	align-items: center;
 `
 
-export default () => (
-	<Avatars>
-		<Avatar />
-		<Avatar />
-		<Avatar />
-		<div>+ 248K</div>
-	</Avatars>
+const DISPLAY_AVATAR_AMOUNT = 3
+
+const outputAvatars = avatars => {
+	if (avatars.length > DISPLAY_AVATAR_AMOUNT) {
+		return (
+			<>
+				{avatars.slice(0, DISPLAY_AVATAR_AMOUNT).map((avatar, index) => (
+					<div
+						key={'avatar-' + index}
+						style={{
+							backgroundImage: `url(${avatar.avatar_url})`,
+							backgroundSize: 'cover',
+							backgroundColor: '#333',
+							width: 28,
+							height: 28,
+							borderRadius: 50,
+							marginRight: 5
+						}}
+					/>
+				))}
+				<div>+ {avatars.length - DISPLAY_AVATAR_AMOUNT}</div>
+			</>
+		)
+	} else {
+		return avatars.map((avatar, index) => (
+			<div
+				key={`avatar-${index}`}
+				style={{
+					backgroundImage: `url(${avatar.avatar_url})`,
+					backgroundSize: 'cover',
+					backgroundColor: '#333',
+					width: 28,
+					height: 28,
+					borderRadius: 50,
+					marginRight: 5
+				}}
+			/>
+		))
+	}
+}
+
+export default ({ avatars = [] }) => (
+	<Avatars>{avatars.length > 0 && outputAvatars(avatars)}</Avatars>
 )

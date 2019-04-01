@@ -14,13 +14,11 @@ const Root = styled.div`
 	padding: 20px;
 `
 
-export default ({ agreement, showMenu = false }) => (
+export default ({ avatars, hash = '', agreement, showMenu = false }) => (
 	<Root>
 		{showMenu && <Menu />}
-		<Avatars />
+		<Avatars avatars={avatars} />
 		<Agreement agreement={agreement} />
-		<VerificationCode>
-			Verification code XlkdfFDHLdsfklsdjf123dsfadslf3Alkjdf1SDFjo4A2
-		</VerificationCode>
+		<VerificationCode>Verification code {hash}</VerificationCode>
 	</Root>
 )

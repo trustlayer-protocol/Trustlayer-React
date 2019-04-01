@@ -5,16 +5,23 @@ import HomeCode from 'scenes/HomeCode'
 
 const getFirstCharacter = text => text.charAt(0).toLowerCase()
 
-export default ({ match }) => {
-	switch (getFirstCharacter(match.params.hashId)) {
+export default ({ location, match }) => {
+	if (
+		location.pathname === '/sso-success' ||
+		location.pathname === '/sso-error'
+	)
+		return null
+
+	const code = match.params.hashId
+	switch (getFirstCharacter(code)) {
 		case 'u':
-			return <UserCode />
+			return <UserCode code={code} />
 
 		case 'a':
-			return <AgreementCode />
+			return <AgreementCode code={code} />
 
 		case 'h':
-			return <HomeCode />
+			return <HomeCode code={code} />
 
 		default:
 			return (

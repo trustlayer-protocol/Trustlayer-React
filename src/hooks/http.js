@@ -4,12 +4,16 @@ import axios from 'axios'
 export const useHttp = (url, dependencies = []) => {
 	const [isLoading, setIsLoading] = useState(false)
 	const [fetchedData, setFetchedData] = useState(null)
+	const domain =
+		process.env.NODE_ENV === 'development'
+			? 'http://localhost:8081/'
+			: 'https://trustlayer.us-west-2.elasticbeanstalk.com/'
 
 	useEffect(() => {
 		setIsLoading(true)
 
 		const fetchData = async () => {
-			const { data: response } = await axios.get(url)
+			const { data: response } = await axios.get(`${domain}${url}`)
 
 			if (response.ok) {
 				setFetchedData(response.result)

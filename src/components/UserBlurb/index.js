@@ -7,14 +7,6 @@ const Root = styled.div`
 	margin-bottom: 20px;
 `
 
-const Avatar = styled.div`
-	background: #777;
-	width: 36px;
-	height: 36px;
-	border-radius: 50px;
-	margin-right: 10px;
-`
-
 const UserInfo = styled.div``
 
 const InviteMessage = styled.div`
@@ -25,12 +17,22 @@ const Email = styled.div`
 	font-size: 14px;
 `
 
-export default () => (
+export default ({ avatarUrl, name, email }) => (
 	<Root>
-		<Avatar />
+		<div
+			style={{
+				backgroundImage: `url(${avatarUrl})`,
+				backgroundSize: 'cover',
+				backgroundColor: '#555',
+				width: 36,
+				height: 36,
+				borderRadius: 50,
+				marginRight: 10
+			}}
+		/>
 		<UserInfo>
-			<InviteMessage>Sara Smith invites you to adopt</InviteMessage>
-			<Email>sara.smith@abc.com</Email>
+			<InviteMessage>{name || email} invites you to adopt</InviteMessage>
+			<Email>{email}</Email>
 		</UserInfo>
 	</Root>
 )
