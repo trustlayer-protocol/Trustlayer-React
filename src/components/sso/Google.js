@@ -46,7 +46,17 @@ export const loadGoogleScript = (scriptName, onLoad) => {
 	}
 }
 
-export const hasIdToken = () => {
+export const checkIfAuthenticatedAndRedirectToServer = state => {
+	if (!hasIdToken()) {
+		return
+	}
+
+	const idToken = getIdToken()
+	const url = `${REDIRECT_URI}?code=${idToken}&state=${state}`
+	window.location.replace(url)
+}
+
+const hasIdToken = () => {
 	const hashQueryParams = window.location.hash
 	const strParams = hashQueryParams.slice(1, hashQueryParams.length)
 	const urlParams = new URLSearchParams(strParams)
@@ -54,7 +64,7 @@ export const hasIdToken = () => {
 	return urlParams.has('id_token')
 }
 
-export const getIdToken = () => {
+const getIdToken = () => {
 	const hashQueryParams = window.location.hash
 	const strParams = hashQueryParams.slice(1, hashQueryParams.length)
 	const urlParams = new URLSearchParams(strParams)
@@ -81,7 +91,7 @@ export const isGoogleLoggedIn = () => {
 
 const signIn = state => {
 	if (!window.gapi.auth2 || !window.gapi.auth2.getAuthInstance()) {
-		initAuth2(() => {
+		initAuth2(state, () => {
 			window.gapi.auth2
 				.getAuthInstance()
 				.signIn()
@@ -107,7 +117,7 @@ const onSigninSuccess = (idToken, state) => {
 
 export const signOut = () => {
 	if (!window.gapi.auth2 || !window.gapi.auth2.getAuthInstance()) {
-		initAuth2(() => {
+		initAuth2(null, () => {
 			window.gapi.auth2.getAuthInstance().signOut()
 		})
 	} else {
@@ -115,14 +125,14 @@ export const signOut = () => {
 	}
 }
 
-function initAuth2(onInit) {
+function initAuth2(state, onInit) {
+	console.log({ state })
 	window.gapi.auth2
 		.init({
 			client_id: CLIENT_ID,
 			ux_mode: 'redirect',
-			redirect_uri: REDIRECT_URI,
 			fetch_basic_profile: true,
-			state: JSON.stringify({ hello: 'world' })
+			cookie_policy: 'none'
 		})
 		.then(onInit)
 }

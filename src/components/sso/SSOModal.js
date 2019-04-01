@@ -29,8 +29,10 @@ const ButtonContainer = styled.div`
 class SSOModal extends Component {
 	constructor(props) {
 		super(props)
+		const state = this.getStateObject()
+		Google.checkIfAuthenticatedAndRedirectToServer(state)
 		Google.loadGoogleScript('auth', () => {
-			Google.signOut()
+			console.log('google script loaded')
 		})
 	}
 
@@ -47,9 +49,7 @@ class SSOModal extends Component {
 
 	render() {
 		const { open, handleOnClose } = this.props
-
 		const state = this.getStateObject()
-
 		return (
 			<Modal open={open} onClose={handleOnClose}>
 				<Root>
@@ -59,7 +59,7 @@ class SSOModal extends Component {
 					</div>
 					<ButtonContainer>
 						<LinkedInButton state={state} />
-						<Google.googleButton state={state} />
+						<Google.googleButton />
 					</ButtonContainer>
 					<Typography variant="caption" color="textSecondary" gutterBottom>
 						We will protect your private information and use it only to provide
