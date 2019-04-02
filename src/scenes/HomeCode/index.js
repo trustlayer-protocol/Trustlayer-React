@@ -14,6 +14,7 @@ import Snackbar from './Snackbar'
 
 const extractData = fetchedData => {
 	const agreementContent = _.get(fetchedData, 'recent_form.content', '')
+	const avatars = _.get(fetchedData, 'avatars', [])
 	const user = _.get(fetchedData, 'user', {})
 	const formId = _.get(fetchedData, 'actions[0].form_id', '')
 	const hash = _.get(fetchedData, 'actions[0].form_hash', '')
@@ -26,6 +27,7 @@ const extractData = fetchedData => {
 	return {
 		agreementContent,
 		user,
+		avatars,
 		formId,
 		hash,
 		actions,
@@ -41,9 +43,14 @@ export default ({ location, history }) => {
 	const [isLoading, fetchedData] = useHttp(`get/user/secure/${token}`)
 	if (fetchedData && fetchedData.ok === false) console.log('not ok')
 
-	const { agreementContent, user, formId, hash, recentAction } = extractData(
-		fetchedData
-	)
+	const {
+		agreementContent,
+		user,
+		formId,
+		hash,
+		recentAction,
+		avatars
+	} = extractData(fetchedData)
 
 	// show the opposite of what the most recent action was
 	const screenDisplay = recentAction.action === 'revoke' ? 'adopt' : 'revoke'
@@ -87,6 +94,7 @@ export default ({ location, history }) => {
 					)}
 					<AgreementBox
 						hash={hash}
+						avatars={avatars}
 						agreement={agreementContent}
 						clickRevoke={displayConfirmMessage}
 						showMenu={screenDisplay === 'revoke'}

@@ -9,14 +9,16 @@ const VerificationCode = styled.p`
 `
 
 const Root = styled.div`
+	position: relative;
 	background: white;
 	border-radius: 6px;
 	padding: 20px;
 `
 
 const MenuWrapper = styled.div`
-	display: flex;
-	justify-content: flex-end;
+	position: absolute;
+	top: 7px;
+	right: 10px;
 `
 
 export default ({
