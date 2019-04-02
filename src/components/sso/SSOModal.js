@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled from '@emotion/styled'
 import Modal from 'components/Modal'
-import Typography from '@material-ui/core/Typography'
 import LinkedInButton from './LinkedIn'
 import * as Google from './Google'
 
@@ -23,6 +22,10 @@ const ButtonContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: 20px;
+`
+
+const Title = styled.h3`
 	margin-bottom: 20px;
 `
 
@@ -54,17 +57,17 @@ class SSOModal extends Component {
 			<Modal open={open} onClose={handleOnClose}>
 				<Root>
 					<div>
-						<h3>Please sign in</h3>
+						<Title>Please sign in</Title>
 						<p>Confirm that it's really you.</p>
 					</div>
 					<ButtonContainer>
 						<LinkedInButton state={state} />
 						<Google.googleButton state={state} />
 					</ButtonContainer>
-					<Typography variant="caption" color="textSecondary" gutterBottom>
+					<p>
 						We will protect your private information and use it only to provide
 						this service.
-					</Typography>
+					</p>
 					<Link target="_blank" href="https://trustbot.io/privacy-policy">
 						Read our privacy policy
 					</Link>

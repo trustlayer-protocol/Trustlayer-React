@@ -12,7 +12,7 @@ export default () => {
 		<Snackbar
 			anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
 			open={isSnackbarOpen}
-			autoHideDuration={2000}
+			autoHideDuration={5000}
 			onClose={handleClose}
 			ContentProps={{
 				'aria-describedby': 'message-id'

@@ -14,7 +14,7 @@ const Avatars = styled.div`
 	align-items: center;
 `
 
-const DISPLAY_AVATAR_AMOUNT = 3
+const DISPLAY_AVATAR_AMOUNT = 5
 
 const outputAvatars = avatars => {
 	if (avatars.length > DISPLAY_AVATAR_AMOUNT) {

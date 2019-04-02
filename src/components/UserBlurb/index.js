@@ -12,6 +12,7 @@ const UserInfo = styled.div``
 
 const InviteMessage = styled.div`
 	font-size: 18px;
+	font-weight: 500;
 `
 
 const Bottom = styled.div`

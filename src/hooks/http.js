@@ -13,15 +13,20 @@ export const useHttp = (url, dependencies = []) => {
 		setIsLoading(true)
 
 		const fetchData = async () => {
-			const { data: response } = await axios.get(`${domain}${url}`)
+			try {
+				const { data: response } = await axios.get(`${domain}${url}`)
 
-			if (response.ok) {
-				setFetchedData(response.result)
-			} else {
-				new Error(response.message)
+				if (response.ok) {
+					setFetchedData({ ok: true, ...response.result })
+				} else {
+					new Error(response.message)
+				}
+
+				setIsLoading(false)
+			} catch (e) {
+				setFetchedData({ ok: false })
+				setIsLoading(false)
 			}
-
-			setIsLoading(false)
 		}
 
 		fetchData()

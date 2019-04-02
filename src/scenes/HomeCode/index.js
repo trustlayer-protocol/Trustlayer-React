@@ -38,10 +38,10 @@ const extractData = fetchedData => {
 export default ({ location, history }) => {
 	const urlParams = new URLSearchParams(location.search)
 	const token = urlParams.get('token')
-	if (!token) history.push('/login')
 
 	const [isLoading, fetchedData] = useHttp(`get/user/secure/${token}`)
-	if (fetchedData && fetchedData.ok === false) console.log('not ok')
+	if (!token || (fetchedData && fetchedData.ok === false))
+		history.push('/login')
 
 	const {
 		agreementContent,
@@ -136,7 +136,7 @@ export default ({ location, history }) => {
 					</CopyToClipboard>
 				)}
 				{screenDisplay === 'adopt' && (
-					<AdoptButton text="Adopt" onClick={displayConfirmMessage} />
+					<AdoptButton text="ADOPT" onClick={displayConfirmMessage} />
 				)}
 			</ButtonContainer>
 			<Snackbar open={isCopied} handleClose={closeClipboardSnackbar} />

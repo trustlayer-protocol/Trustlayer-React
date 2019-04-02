@@ -21,6 +21,10 @@ const MenuWrapper = styled.div`
 	right: 10px;
 `
 
+const AvatarText = styled.div`
+	margin-bottom: 10px;
+`
+
 export default ({
 	avatars,
 	hash = '',
@@ -34,6 +38,7 @@ export default ({
 				<Menu clickRevoke={clickRevoke} />
 			</MenuWrapper>
 		)}
+		<AvatarText>Adopted by:</AvatarText>
 		<Avatars avatars={avatars} />
 		<Agreement agreement={agreement} />
 		<VerificationCode>Verification code {hash}</VerificationCode>

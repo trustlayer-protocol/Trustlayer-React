@@ -26,6 +26,7 @@ export default ({ code }) => {
 	const actionLink = _.get(fetchedData, 'actions[0].link', '')
 	const formId = _.get(fetchedData, 'actions[0].form_id', '')
 	const hash = _.get(fetchedData, 'actions[0].form_hash', '')
+	const avatars = _.get(fetchedData, 'avatars', [])
 
 	const [isButtonDisabled, setButtonState] = useState(true)
 
@@ -72,7 +73,11 @@ export default ({ code }) => {
 						name={user.full_name}
 						email={user.email}
 					/>
-					<AgreementBox hash={hash} agreement={agreementContent} />
+					<AgreementBox
+						hash={hash}
+						agreement={agreementContent}
+						avatars={avatars}
+					/>
 				</Container>
 			</Root>
 			<Modal open={isModalOpen} onClose={closeConfirmMessage}>

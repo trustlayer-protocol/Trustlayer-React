@@ -30,7 +30,7 @@ const Number = styled.span`
 
 export default () => (
 	<>
-		<Heading>Easiest NDA ever (free)</Heading>
+		<Heading>Easiest NDA ever</Heading>
 		<List>
 			<Item>
 				<Number>1</Number> Read, adopt and share your link

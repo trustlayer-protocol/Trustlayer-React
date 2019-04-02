@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Snackbar from '@material-ui/core/Snackbar'
 
 export default ({ open, handleClose }) => (
 	<Snackbar
 		anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
 		open={open}
-		autoHideDuration={2000}
+		autoHideDuration={5000}
 		onClose={handleClose}
 		ContentProps={{
 			'aria-describedby': 'message-id'
