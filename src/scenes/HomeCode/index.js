@@ -45,7 +45,6 @@ export default ({ location }) => {
 
 	// show the opposite of what the most recent action was
 	const screenDisplay = recentAction.action === 'revoke' ? 'adopt' : 'revoke'
-	console.log(screenDisplay)
 	const [isModalOpen, setModalState] = useState(false)
 
 	const displayConfirmMessage = () => {
@@ -76,11 +75,14 @@ export default ({ location }) => {
 		<>
 			<Root>
 				<Container>
-					<UserBlurb
-						avatarUrl={user.avatar_url}
-						name={user.full_name}
-						email={user.email}
-					/>
+					{screenDisplay === 'revoke' && (
+						<UserBlurb
+							avatarUrl={user.avatar_url}
+							name="You"
+							email={user.email}
+							date={recentAction.created}
+						/>
+					)}
 					<AgreementBox
 						hash={hash}
 						agreement={agreementContent}

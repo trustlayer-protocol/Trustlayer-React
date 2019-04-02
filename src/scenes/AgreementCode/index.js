@@ -32,6 +32,8 @@ export default ({ code }) => {
 	const user2 = _.get(fetchedData, 'user2', {})
 	const agreementContent = _.get(fetchedData, 'form.content', '')
 	const hash = _.get(fetchedData, 'agreement.form_hash', '')
+	const avatars = _.get(fetchedData, 'avatars', [])
+	const date = _.get(fetchedData, 'agreement.created', '')
 
 	const [isSsoOpen, setSsoState] = useState(false)
 
@@ -46,13 +48,19 @@ export default ({ code }) => {
 					avatarUrl={user1.avatar_url}
 					name={user1.full_name}
 					email={user1.email}
+					date={date}
 				/>
 				<UserBlurb
 					avatarUrl={user2.avatar_url}
 					name={user2.full_name}
 					email={user2.email}
+					date={date}
 				/>
-				<AgreementBox hash={hash} agreement={agreementContent} />
+				<AgreementBox
+					avatars={avatars}
+					hash={hash}
+					agreement={agreementContent}
+				/>
 
 				<SSOModal action="get-pdf" link={code} open={isSsoOpen} />
 				<ButtonContainer>

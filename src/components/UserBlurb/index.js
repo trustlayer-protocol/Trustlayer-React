@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import moment from 'moment'
 
 const Root = styled.div`
 	display: flex;
@@ -13,11 +14,11 @@ const InviteMessage = styled.div`
 	font-size: 18px;
 `
 
-const Email = styled.div`
+const Bottom = styled.div`
 	font-size: 14px;
 `
 
-export default ({ avatarUrl, name, email }) => (
+export default ({ avatarUrl, name, email, date }) => (
 	<Root>
 		<div
 			style={{
@@ -30,9 +31,18 @@ export default ({ avatarUrl, name, email }) => (
 				marginRight: 10
 			}}
 		/>
-		<UserInfo>
-			<InviteMessage>{name || email} invites you to adopt</InviteMessage>
-			<Email>{email}</Email>
-		</UserInfo>
+		{date ? (
+			<UserInfo>
+				<InviteMessage>{name || email} adopted</InviteMessage>
+				<Bottom>
+					{moment().format('d MMM YYYY')} | {email}
+				</Bottom>
+			</UserInfo>
+		) : (
+			<UserInfo>
+				<InviteMessage>{name || email} invites you to adopt</InviteMessage>
+				<Bottom>{email}</Bottom>
+			</UserInfo>
+		)}
 	</Root>
 )
