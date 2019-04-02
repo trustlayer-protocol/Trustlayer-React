@@ -1,36 +1,51 @@
 import React, { useState } from 'react'
-import styled from '@emotion/styled'
 import UserBlurb from 'components/UserBlurb'
 import AgreementBox from 'components/AgreementBox'
 import { useHttp } from 'hooks/http'
-import Modal from 'components/Modal'
+import AdoptModal from 'components/AdoptModal'
+import AdoptButton from 'components/buttons/Green'
+import RevokeModal from './RevokeModal'
 import Button from 'components/buttons/BlueOutline'
 import SSOModal from 'components/sso/SSOModal'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import {
-	Root,
-	Container,
-	ButtonContainer,
-	AlertButton,
-	CancelButton
-} from 'services/styles'
+import { Root, Container, ButtonContainer } from 'services/styles'
 import _ from 'lodash'
 import Snackbar from './Snackbar'
 
-export default () => {
-	const userCode = 'UvBFJpfE6Lq' // Temp development until login is setup
-	const [isLoading, fetchedData] = useHttp(`get/user/${userCode}`)
-
+const extractData = fetchedData => {
 	const agreementContent = _.get(fetchedData, 'recent_form.content', '')
 	const user = _.get(fetchedData, 'user', {})
 	const formId = _.get(fetchedData, 'actions[0].form_id', '')
 	const hash = _.get(fetchedData, 'actions[0].form_hash', '')
 	const actions = _.get(fetchedData, `actions`, [])
 
-	const actionLink = actions.length > 0 ? actions[actions.length - 1].link : ''
+	const recentAction = actions.reduce((acc, curr) => {
+		return acc.created > curr.created ? acc : curr
+	}, {})
 
-	const [isButtonDisabled, setButtonState] = useState(true)
+	return {
+		agreementContent,
+		user,
+		formId,
+		hash,
+		actions,
+		recentAction
+	}
+}
 
+export default ({ location }) => {
+	const urlParams = new URLSearchParams(location.search)
+	const token = urlParams.get('token')
+
+	const [isLoading, fetchedData] = useHttp(`get/user/secure/${token}`)
+
+	const { agreementContent, user, formId, hash, recentAction } = extractData(
+		fetchedData
+	)
+
+	// show the opposite of what the most recent action was
+	const screenDisplay = recentAction.action === 'revoke' ? 'adopt' : 'revoke'
+	console.log(screenDisplay)
 	const [isModalOpen, setModalState] = useState(false)
 
 	const displayConfirmMessage = () => {
@@ -70,35 +85,47 @@ export default () => {
 						hash={hash}
 						agreement={agreementContent}
 						clickRevoke={displayConfirmMessage}
-						showMenu={true}
+						showMenu={screenDisplay === 'revoke'}
 					/>
 				</Container>
 			</Root>
-			<Modal open={isModalOpen} onClose={closeConfirmMessage}>
-				<h3>
-					Are you sure you want to revoke your adoption of this agreement?
-				</h3>
-				<p>
-					This will not revoke or affect any previous agreements, which will
-					continue in effect. Consult with your legal counsel if you need to
-					terminate any existing obligations.
-				</p>
-				<AlertButton onClick={displaySsoModal}>REVOKE ADOPTION</AlertButton>
-				<CancelButton onClick={closeConfirmMessage}>Cancel</CancelButton>
-			</Modal>
-			<SSOModal
-				action="revoke"
-				link={actionLink}
-				userId={user.id}
-				open={isSsoOpen}
-			/>
+			{screenDisplay === 'revoke' && (
+				<>
+					<RevokeModal
+						open={isModalOpen}
+						onClose={closeConfirmMessage}
+						onConfirm={displaySsoModal}
+					/>
+					<SSOModal
+						action="revoke"
+						link={recentAction.link}
+						userId={user.id}
+						open={isSsoOpen}
+					/>
+				</>
+			)}
+			{screenDisplay === 'adopt' && (
+				<>
+					<AdoptModal
+						open={isModalOpen}
+						onClose={closeConfirmMessage}
+						onConfirm={displaySsoModal}
+					/>
+					<SSOModal action="adopt" formId={2} open={isSsoOpen} />
+				</>
+			)}
 			<ButtonContainer>
-				<CopyToClipboard
-					text={`https://trustlayer.trustbot.io/${userCode}`}
-					onCopy={onClipboardCopy}
-				>
-					<Button text="GET INVITE LINK" />
-				</CopyToClipboard>
+				{screenDisplay === 'revoke' && (
+					<CopyToClipboard
+						text={`https://trustlayer.trustbot.io/${user.link}`}
+						onCopy={onClipboardCopy}
+					>
+						<Button text="GET INVITE LINK" />
+					</CopyToClipboard>
+				)}
+				{screenDisplay === 'adopt' && (
+					<AdoptButton text="Adopt" onClick={displayConfirmMessage} />
+				)}
 			</ButtonContainer>
 			<Snackbar open={isCopied} handleClose={closeClipboardSnackbar} />
 		</>

@@ -49,6 +49,7 @@ class SSOModal extends Component {
 	render() {
 		const { open, handleOnClose } = this.props
 		const state = this.getStateObject()
+
 		return (
 			<Modal open={open} onClose={handleOnClose}>
 				<Root>
