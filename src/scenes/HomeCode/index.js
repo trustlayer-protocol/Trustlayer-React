@@ -33,11 +33,13 @@ const extractData = fetchedData => {
 	}
 }
 
-export default ({ location }) => {
+export default ({ location, history }) => {
 	const urlParams = new URLSearchParams(location.search)
 	const token = urlParams.get('token')
+	if (!token) history.push('/login')
 
 	const [isLoading, fetchedData] = useHttp(`get/user/secure/${token}`)
+	if (fetchedData && fetchedData.ok === false) console.log('not ok')
 
 	const { agreementContent, user, formId, hash, recentAction } = extractData(
 		fetchedData
