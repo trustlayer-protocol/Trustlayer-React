@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import UserBlurb from 'components/UserBlurb'
 import AgreementBox from 'components/AgreementBox'
 import PdfButton from 'components/buttons/BlueOutline'
+import Snackbar from 'components/Snackbar'
 import { useHttp } from 'hooks/http'
 import SSOModal from 'components/sso/SSOModal'
 import _ from 'lodash'
@@ -25,7 +26,7 @@ const ButtonContainer = styled.div`
 	justify-content: center;
 `
 
-export default ({ code }) => {
+export default ({ location, code }) => {
 	const [isLoading, fetchedData] = useHttp(`get/agreement/${code}`)
 
 	const user1 = _.get(fetchedData, 'user1', {})
@@ -37,6 +38,12 @@ export default ({ code }) => {
 
 	const [isSsoOpen, setSsoState] = useState(false)
 
+	const [isSnackbarOpen, setSnackbarState] = useState(
+		_.has(location, 'state.snackbar')
+	)
+	const closeSnackbar = () => {
+		setSnackbarState(false)
+	}
 	const getPdf = () => {
 		setSsoState(true)
 	}
@@ -67,6 +74,11 @@ export default ({ code }) => {
 					<PdfButton text="GET PDF" onClick={getPdf} />
 				</ButtonContainer>
 			</Container>
+			<Snackbar
+				open={isSnackbarOpen}
+				handleClose={closeSnackbar}
+				message={_.get(location, 'state.snackbar', '')}
+			/>
 		</Root>
 	)
 }

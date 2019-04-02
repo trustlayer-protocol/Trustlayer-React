@@ -104,7 +104,7 @@ export default () => {
 			<ButtonContainer>
 				<AdoptButton
 					disabled={isButtonDisabled}
-					text="Adopt"
+					text="ADOPT"
 					onClick={displayConfirmMessage}
 				/>
 			</ButtonContainer>

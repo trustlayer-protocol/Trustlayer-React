@@ -15,7 +15,11 @@ export default ({ location, history }) => {
 	const link = urlParams.get('link')
 	localStorage.setItem('email', email)
 
-	history.push(`/${link}`)
+	history.push({
+		pathname: `/${link}`,
+		state: { snackbar: 'Adoption complete!' }
+	})
+
 	return (
 		<Root>
 			<Header>Success</Header>

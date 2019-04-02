@@ -8,6 +8,7 @@ const getFirstCharacter = text => text.charAt(0).toLowerCase()
 
 export default ({ location, match }) => {
 	const code = match.params.hashId
+
 	switch (getFirstCharacter(code)) {
 		case 'u':
 			return <UserCode code={code} />
@@ -16,7 +17,7 @@ export default ({ location, match }) => {
 			return <AdoptCode code={code} />
 
 		case 'a':
-			return <AgreementCode code={code} />
+			return <AgreementCode location={location} code={code} />
 
 		case 'h':
 			return <HomeCode code={code} />

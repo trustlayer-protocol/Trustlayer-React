@@ -52,6 +52,14 @@ export default ({ location, history }) => {
 		avatars
 	} = extractData(fetchedData)
 
+	const actionSnackbar = urlParams.get('action')
+	const [isActionSnackbarOpen, setactionSnackbarState] = useState(
+		actionSnackbar === 'adopt'
+	)
+	const closeActionSnackbarSnackbar = () => {
+		setactionSnackbarState(false)
+	}
+
 	// show the opposite of what the most recent action was
 	const screenDisplay = recentAction.action === 'revoke' ? 'adopt' : 'revoke'
 	const [isModalOpen, setModalState] = useState(false)
@@ -140,6 +148,11 @@ export default ({ location, history }) => {
 				)}
 			</ButtonContainer>
 			<Snackbar open={isCopied} handleClose={closeClipboardSnackbar} />
+			<Snackbar
+				open={isActionSnackbarOpen}
+				handleClose={closeActionSnackbarSnackbar}
+				message="Adoption complete!"
+			/>
 		</>
 	)
 }
