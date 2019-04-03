@@ -6,12 +6,12 @@ import HomeCode from 'scenes/HomeCode'
 
 const getFirstCharacter = text => text.charAt(0).toLowerCase()
 
-export default ({ location, match }) => {
+export default ({ location, match, history }) => {
 	const code = match.params.hashId
 
 	switch (getFirstCharacter(code)) {
 		case 'u':
-			return <UserCode code={code} />
+			return <UserCode history={history} code={code} />
 
 		case 'd':
 			return <AdoptCode code={code} />

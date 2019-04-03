@@ -17,16 +17,18 @@ import {
 	Link
 } from 'services/styles'
 
-export default ({ code }) => {
+export default ({ code, history }) => {
 	const [isLoading, fetchedData] = useHttp(`get/user/${code}`)
 
 	const scrollController = new ScrollMagic.Controller()
 	const agreementContent = _.get(fetchedData, 'recent_form.content', '')
 	const user = _.get(fetchedData, 'user', {})
-	const actionLink = _.get(fetchedData, 'actions[0].link', '')
+	const action = _.get(fetchedData, 'actions[0]', '')
 	const formId = _.get(fetchedData, 'actions[0].form_id', '')
 	const hash = _.get(fetchedData, 'actions[0].form_hash', '')
 	const avatars = _.get(fetchedData, 'avatars', [])
+
+	if (action.action === 'revoke') history.push('/')
 
 	const [isButtonDisabled, setButtonState] = useState(true)
 
@@ -99,7 +101,7 @@ export default ({ code }) => {
 			</Modal>
 			<SSOModal
 				action="adopt"
-				link={actionLink}
+				link={action.link}
 				formId={formId}
 				open={isSsoOpen}
 			/>
