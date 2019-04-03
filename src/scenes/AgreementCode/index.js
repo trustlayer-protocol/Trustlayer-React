@@ -37,13 +37,18 @@ export default ({ location, code }) => {
 	const date = _.get(fetchedData, 'agreement.created', '')
 
 	const [isSsoOpen, setSsoState] = useState(false)
+	const closeSsoModal = () => {
+		setSsoState(false)
+	}
 
 	const [isSnackbarOpen, setSnackbarState] = useState(
 		_.has(location, 'state.snackbar')
 	)
+
 	const closeSnackbar = () => {
 		setSnackbarState(false)
 	}
+
 	const getPdf = () => {
 		setSsoState(true)
 	}
@@ -69,7 +74,12 @@ export default ({ location, code }) => {
 					agreement={agreementContent}
 				/>
 
-				<SSOModal action="get-pdf" link={code} open={isSsoOpen} />
+				<SSOModal
+					action="get-pdf"
+					link={code}
+					open={isSsoOpen}
+					handleOnClose={closeSsoModal}
+				/>
 				<ButtonContainer>
 					<PdfButton text="GET PDF" onClick={getPdf} />
 				</ButtonContainer>

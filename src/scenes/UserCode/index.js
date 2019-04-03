@@ -61,6 +61,10 @@ export default ({ code, history }) => {
 
 	const [isSsoOpen, setSsoState] = useState(false)
 
+	const closeSsoModal = () => {
+		setSsoState(false)
+	}
+
 	const displaySsoModal = () => {
 		setSsoState(true)
 		setModalState(false)
@@ -104,6 +108,7 @@ export default ({ code, history }) => {
 				link={action.link}
 				formId={formId}
 				open={isSsoOpen}
+				handleOnClose={closeSsoModal}
 			/>
 
 			<ButtonContainer>

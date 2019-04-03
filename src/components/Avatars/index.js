@@ -9,6 +9,7 @@ const Avatars = styled.div`
 const DISPLAY_AVATAR_AMOUNT = 5
 
 const outputAvatars = avatars => {
+	//avatars = avatars.reverse()
 	if (avatars.length > DISPLAY_AVATAR_AMOUNT) {
 		return (
 			<>

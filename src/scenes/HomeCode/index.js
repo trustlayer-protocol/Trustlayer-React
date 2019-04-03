@@ -74,6 +74,10 @@ export default ({ location, history }) => {
 
 	const [isSsoOpen, setSsoState] = useState(false)
 
+	const closeSsoModal = () => {
+		setSsoState(false)
+	}
+
 	const displaySsoModal = () => {
 		setSsoState(true)
 		setModalState(false)
@@ -121,6 +125,7 @@ export default ({ location, history }) => {
 						link={recentAction.link}
 						userId={user.id}
 						open={isSsoOpen}
+						handleOnClose={closeSsoModal}
 					/>
 				</>
 			)}
@@ -131,7 +136,12 @@ export default ({ location, history }) => {
 						onClose={closeConfirmMessage}
 						onConfirm={displaySsoModal}
 					/>
-					<SSOModal action="adopt" formId={2} open={isSsoOpen} />
+					<SSOModal
+						action="adopt"
+						formId={2}
+						open={isSsoOpen}
+						handleOnClose={closeSsoModal}
+					/>
 				</>
 			)}
 			<ButtonContainer>
