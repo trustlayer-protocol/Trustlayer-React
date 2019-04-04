@@ -38,7 +38,7 @@ export default ({
 				<Menu clickRevoke={clickRevoke} />
 			</MenuWrapper>
 		)}
-		<AvatarText>Adopted by:</AvatarText>
+		<AvatarText>Adopted by</AvatarText>
 		<Avatars avatars={avatars} />
 		<Agreement agreement={agreement} />
 		<VerificationCode>Verification code {hash}</VerificationCode>

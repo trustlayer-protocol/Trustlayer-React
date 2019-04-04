@@ -1,6 +1,8 @@
 body,
 html {
 	font-family: Roboto, sans-serif;
+	line-height: 1.5;
+	font-size: 14px;
 	box-sizing: border-box;
 	background: #ececec;
 	margin: 0;
@@ -17,4 +19,21 @@ html {
 
 button {
 	cursor: pointer;
+}
+
+h2 {
+	margin-bottom: 0;
+	font-weight: 700;
+}
+
+p {
+	margin-top: 0;
+}
+
+li {
+	margin-bottom: 5px;
+}
+
+strong {
+	font-weight: 700;
 }

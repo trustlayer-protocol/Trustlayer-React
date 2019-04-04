@@ -4,6 +4,7 @@ import axios from 'axios'
 export const useHttp = (url, dependencies = []) => {
 	const [isLoading, setIsLoading] = useState(false)
 	const [fetchedData, setFetchedData] = useState(null)
+
 	const domain =
 		process.env.NODE_ENV === 'development'
 			? 'http://localhost:8081/'

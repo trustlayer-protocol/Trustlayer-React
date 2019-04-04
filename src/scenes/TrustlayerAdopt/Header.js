@@ -1,6 +1,13 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Heading } from 'services/styles'
+
+const Heading = styled.div`
+	font-size: 32px;
+	margin-bottom: 10px;
+`
+const Root = styled.div`
+	padding-left: 20px;
+`
 
 const List = styled.div`
 	margin-bottom: 20px;
@@ -9,15 +16,16 @@ const List = styled.div`
 const Item = styled.div`
 	display: flex;
 	align-items: center;
-	color: #455a64;
-	font-size: 20px;
+	color: #4f575a;
+	font-size: 25px;
 	margin-bottom: 15px;
+	line-height: 1;
 `
 
-const numberSize = 25
+const numberSize = 28
 const Number = styled.span`
 	font-size: 18px;
-	background: #1e88e5;
+	background: #1d7acc;
 	color: white;
 	display: flex;
 	justify-content: center;
@@ -29,18 +37,18 @@ const Number = styled.span`
 `
 
 export default () => (
-	<>
+	<Root>
 		<Heading>Easiest NDA ever</Heading>
 		<List>
 			<Item>
-				<Number>1</Number> Read, adopt and share your link
+				<Number>1</Number> You adopt and share your link
 			</Item>
 			<Item>
-				<Number>2</Number> They adopt and your NDA activates
+				<Number>2</Number> They adopt and the NDA activates
 			</Item>
 			<Item>
-				<Number>3</Number> Verified and preserved on Blockchain
+				<Number>3</Number> Blockchain verifies and preserves
 			</Item>
 		</List>
-	</>
+	</Root>
 )

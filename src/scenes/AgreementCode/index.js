@@ -9,7 +9,7 @@ import SSOModal from 'components/sso/SSOModal'
 import _ from 'lodash'
 
 const Root = styled.div`
-	margin: 40px 0 80px;
+	margin: 20px 0 80px;
 `
 
 const Container = styled.div`
