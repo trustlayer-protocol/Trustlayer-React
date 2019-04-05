@@ -1,11 +1,14 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { Done } from '@material-ui/icons'
 import moment from 'moment'
 
 const Root = styled.div`
 	display: flex;
+	position: relative;
 	align-items: center;
 	margin-bottom: 20px;
+	padding-left: 20px;
 `
 
 const UserInfo = styled.div``
@@ -19,19 +22,40 @@ const Bottom = styled.div`
 	font-size: 14px;
 `
 
-export default ({ avatarUrl, name, email, date }) => (
+const GreenCheck = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	background: #8bc34a;
+	border-radius: 20px;
+	position: absolute;
+	bottom: -5px;
+	left: 54px;
+`
+
+export default ({ avatarUrl, name, email, date, hasGreenCheck = true }) => (
 	<Root>
 		<div
 			style={{
 				backgroundImage: `url(${avatarUrl})`,
 				backgroundSize: 'cover',
 				backgroundColor: '#555',
-				width: 36,
-				height: 36,
+				width: 56,
+				height: 56,
 				borderRadius: 50,
 				marginRight: 10
 			}}
 		/>
+		<GreenCheck>
+			<Done
+				style={{
+					color: 'white',
+					fontSize: 16
+				}}
+			/>
+		</GreenCheck>
 		{date ? (
 			<UserInfo>
 				<InviteMessage>{name || email} adopted</InviteMessage>

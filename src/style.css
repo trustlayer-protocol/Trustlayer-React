@@ -28,10 +28,12 @@ h2 {
 
 p {
 	margin-top: 0;
+	font-weight: 500;
 }
 
 li {
 	margin-bottom: 5px;
+	font-weight: 500;
 }
 
 strong {

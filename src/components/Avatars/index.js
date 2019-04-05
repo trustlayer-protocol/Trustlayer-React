@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import Tooltip from '@material-ui/core/Tooltip'
+import { Person } from '@material-ui/icons'
 import styled from '@emotion/styled'
 
 const Avatars = styled.div`
@@ -11,22 +12,45 @@ const DISPLAY_AVATAR_AMOUNT = 5
 
 const Avatar = ({ url, name }) => (
 	<Tooltip title={name} placement="bottom">
-		<div
-			style={{
-				backgroundImage: `url(${url})`,
-				backgroundSize: 'cover',
-				backgroundColor: '#333',
-				width: 28,
-				height: 28,
-				borderRadius: 50,
-				marginRight: 5
-			}}
-		/>
+		{url ? (
+			<div
+				style={{
+					backgroundImage: `url(${url})`,
+					backgroundSize: 'cover',
+					backgroundColor: '#333',
+					width: 28,
+					height: 28,
+					borderRadius: 50,
+					marginRight: 5
+				}}
+			/>
+		) : (
+			<div
+				style={{
+					width: 28,
+					height: 28,
+					borderRadius: 50,
+					backgroundColor: '#444',
+					marginRight: 5,
+					display: 'flex',
+					justifyContent: 'center',
+					alignItems: 'center'
+				}}
+			>
+				<Person
+					style={{
+						fontSize: 23,
+						color: 'rgba(255,255,255,.8)'
+					}}
+				/>
+			</div>
+		)}
 	</Tooltip>
 )
 
 const outputAvatars = avatars => {
 	avatars.reverse()
+
 	if (avatars.length > DISPLAY_AVATAR_AMOUNT) {
 		return (
 			<>

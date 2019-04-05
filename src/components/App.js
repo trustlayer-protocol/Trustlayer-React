@@ -9,7 +9,7 @@ import Home from 'scenes/HomeCode'
 import styled from '@emotion/styled'
 
 const Root = styled.div`
-	padding-top: 36px;
+	padding-top: 41px;
 	margin: 0 20px;
 `
 
@@ -41,11 +41,7 @@ export default () => (
 		<Root>
 			<Header>
 				<Link target="_blank" href="https://trustlayer.org">
-					Trustlayer
-				</Link>{' '}
-				|{' '}
-				<Link target="_blank" href="https://trustbot.io">
-					Trustbot.io
+					How does this work?
 				</Link>
 			</Header>
 			<BrowserRouter>
