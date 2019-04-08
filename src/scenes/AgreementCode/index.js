@@ -31,6 +31,8 @@ export default ({ location, code }) => {
 
 	const user1 = _.get(fetchedData, 'user1', {})
 	const user2 = _.get(fetchedData, 'user2', {})
+	const adoption1 = _.get(fetchedData, 'adoption1', {})
+	const adoption2 = _.get(fetchedData, 'adoption2', {})
 	const agreementContent = _.get(fetchedData, 'form.content', '')
 	const hash = _.get(fetchedData, 'agreement.form_hash', '')
 	const avatars = _.get(fetchedData, 'avatars', [])
@@ -60,13 +62,13 @@ export default ({ location, code }) => {
 					avatarUrl={user1.avatar_url}
 					name={user1.full_name}
 					email={user1.email}
-					date={date}
+					date={adoption1.created}
 				/>
 				<UserBlurb
 					avatarUrl={user2.avatar_url}
 					name={user2.full_name}
 					email={user2.email}
-					date={date}
+					date={adoption2.created}
 				/>
 				<AgreementBox
 					avatars={avatars}

@@ -60,7 +60,7 @@ export default ({ avatarUrl, name, email, date, hasGreenCheck = true }) => (
 			<UserInfo>
 				<InviteMessage>{name || email} adopted</InviteMessage>
 				<Bottom>
-					{moment().format('d MMM YYYY')} | {email}
+					{moment().format('D MMM YYYY')} | {email}
 				</Bottom>
 			</UserInfo>
 		) : (
