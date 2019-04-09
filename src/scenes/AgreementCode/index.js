@@ -36,7 +36,6 @@ export default ({ location, code }) => {
 	const agreementContent = _.get(fetchedData, 'form.content', '')
 	const hash = _.get(fetchedData, 'agreement.form_hash', '')
 	const avatars = _.get(fetchedData, 'avatars', [])
-	const date = _.get(fetchedData, 'agreement.created', '')
 
 	const [isSsoOpen, setSsoState] = useState(false)
 	const closeSsoModal = () => {

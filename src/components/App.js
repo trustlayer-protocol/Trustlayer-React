@@ -4,6 +4,7 @@ import HashReader from './HashReader.js'
 import { Switch, BrowserRouter, Route } from 'react-router-dom'
 import TrustlayerAdopt from 'scenes/TrustlayerAdopt'
 import SsoSuccess from 'scenes/SsoSuccess'
+import SsoFail from 'scenes/SsoFail'
 import Login from 'scenes/Login'
 import Home from 'scenes/HomeCode'
 import styled from '@emotion/styled'
@@ -48,6 +49,7 @@ export default () => (
 				<Switch>
 					<Route exact path="/" component={TrustlayerAdopt} />
 					<Route path="/sso-success" component={SsoSuccess} />
+					<Route path="/fail" component={SsoFail} />
 					<Route path="/login" component={Login} />
 					<Route path="/home" component={Home} />
 					<Route exact path="/:hashId" component={HashReader} />
