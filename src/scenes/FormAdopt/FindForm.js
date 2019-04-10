@@ -17,17 +17,35 @@ const Header = styled.div`
 	align-items: center;
 `
 
+const Title = styled.h3`
+	font-size: 24px;
+`
+
 const Paper = styled.div`
 	background: white;
 	border-radius: 6px;
 	padding: 20px;
 	margin-bottom: 20px;
 	cursor: pointer;
+	font-size: 17px;
+	line-height: 1.4;
 `
 
-const Title = styled.div`
-	margin: 0 0 10px 0;
+const NdaTitle = styled.h4`
 	font-size: 24px;
+	font-weight: 500;
+	margin-top: 0;
+	margin-bottom: 18px;
+`
+
+const Details = styled.div`
+	font-weight: 500;
+	margin-bottom: 18px;
+`
+
+const Blurb = styled.p`
+	font-weight: 400;
+	margin-bottom: 0;
 `
 
 export default withRouter(({ history }) => {
@@ -45,14 +63,16 @@ export default withRouter(({ history }) => {
 				<IconButton style={{ marginRight: 10 }} aria-label="Back">
 					<ArrowBack />
 				</IconButton>
-				<h3>Find forms</h3>
+				<Title>Find forms</Title>
 			</Header>
 			{filteredNdas.map((nda, index) => (
 				<Paper key={index} onClick={() => goToForm(nda.type)}>
-					<h4>{nda.name}</h4>
-					<div>{nda.author}</div>
-					<div>Updated {nda.date}</div>
-					<p>{nda.blurb}</p>
+					<NdaTitle>{nda.name}</NdaTitle>
+					<Details>
+						<div>{nda.author}</div>
+						<div>Updated {nda.date}</div>
+					</Details>
+					<Blurb>{nda.blurb}</Blurb>
 				</Paper>
 			))}
 		</Root>

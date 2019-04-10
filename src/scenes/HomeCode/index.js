@@ -52,6 +52,8 @@ export default ({ location, history }) => {
 		avatars
 	} = extractData(fetchedData)
 
+	if (user.email) localStorage.setItem('email', user.email)
+
 	const actionSnackbar = urlParams.get('action')
 	const [isActionSnackbarOpen, setactionSnackbarState] = useState(
 		actionSnackbar === 'adopt'
