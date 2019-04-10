@@ -10,6 +10,11 @@ html {
 	color: #333;
 }
 
+body {
+	overflow: auto !important;
+	padding-right: 0 !important;
+}
+
 *,
 *:after,
 *:before {

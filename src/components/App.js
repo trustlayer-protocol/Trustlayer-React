@@ -7,6 +7,8 @@ import SsoSuccess from 'scenes/SsoSuccess'
 import SsoFail from 'scenes/SsoFail'
 import Login from 'scenes/Login'
 import Home from 'scenes/HomeCode'
+import FormAdopt from 'scenes/FormAdopt'
+import FindForm from 'scenes/FormAdopt/FindForm'
 import styled from '@emotion/styled'
 
 const Root = styled.div`
@@ -52,6 +54,10 @@ export default () => (
 					<Route path="/fail" component={SsoFail} />
 					<Route path="/login" component={Login} />
 					<Route path="/home" component={Home} />
+					<Route path="/form/:type/:version" component={FormAdopt} />
+					<Route path="/form/:type" component={FormAdopt} />
+					<Route path="/form" component={FormAdopt} />
+					<Route path="/find-form" component={FindForm} />
 					<Route exact path="/:hashId" component={HashReader} />
 				</Switch>
 			</BrowserRouter>

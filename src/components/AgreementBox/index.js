@@ -26,7 +26,7 @@ const AvatarText = styled.div`
 `
 
 export default ({
-	avatars,
+	avatars = [],
 	hash = '',
 	agreement,
 	clickRevoke,
@@ -38,8 +38,12 @@ export default ({
 				<Menu clickRevoke={clickRevoke} />
 			</MenuWrapper>
 		)}
-		<AvatarText>Adopted by</AvatarText>
-		<Avatars avatars={avatars} />
+		{avatars.length > 0 && (
+			<>
+				<AvatarText>Adopted by</AvatarText>
+				<Avatars avatars={avatars} />
+			</>
+		)}
 		<Agreement agreement={agreement} />
 		<VerificationCode>Verification code {hash}</VerificationCode>
 	</Root>

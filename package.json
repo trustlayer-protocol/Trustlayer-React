@@ -20,7 +20,8 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "scrollmagic": "^2.0.6",
-    "typeface-roboto": "^0.0.54"
+    "typeface-roboto": "^0.0.54",
+    "typescript": "^3.4.2"
   },
   "husky": {
     "hooks": {
