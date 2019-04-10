@@ -9,6 +9,7 @@ import UserBlurb from 'components/UserBlurb'
 import ScrollSnackbar from 'components/ScrollSnackbar'
 import _ from 'lodash'
 import { Root, Container, ButtonContainer } from 'services/styles'
+import { withStyles } from '@material-ui/core/styles'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import Input from '@material-ui/core/Input'
@@ -16,6 +17,13 @@ import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import Button from '@material-ui/core/Button'
 import ndas from './tempData.js'
+
+const StyledTabs = withStyles({
+	indicator: {
+		backgroundColor: '#35373a',
+		height: 3
+	}
+})(Tabs)
 
 const useConfirmMessage = () => {
 	const [isModalOpen, setModalState] = useState(false)
@@ -99,7 +107,7 @@ export default withRouter(({ history, match }) => {
 	const selectVersion = (event, value) => {
 		history.push(`/form/${ndaType}/${value}`)
 	}
-
+	const date = new Date()
 	return (
 		<>
 			<Root>
@@ -108,7 +116,8 @@ export default withRouter(({ history, match }) => {
 						avatarUrl={user.avatar_url}
 						name={user.full_name}
 						email={user.email}
-						date={'1'}
+						date={Date.now()}
+						isAdopt={!canAdopt}
 					/>
 
 					{usersNdaTypes.length > 0 && usersAdoptedTypes.includes(ndaType) ? (
@@ -136,7 +145,7 @@ export default withRouter(({ history, match }) => {
 							Find More forms
 						</Button>
 					)}
-					<Tabs value={ndaVersion} onChange={selectVersion}>
+					<StyledTabs value={ndaVersion} onChange={selectVersion}>
 						{filteredNda.map((nda, index) => (
 							<Tab
 								key={`tab-${index}`}
@@ -149,7 +158,7 @@ export default withRouter(({ history, match }) => {
 								label={nda.version}
 							/>
 						))}
-					</Tabs>
+					</StyledTabs>
 					<AgreementBox hash={currentNda.id} agreement={currentNda.content} />
 				</Container>
 			</Root>

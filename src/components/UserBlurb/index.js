@@ -35,7 +35,15 @@ const GreenCheck = styled.div`
 	left: 54px;
 `
 
-export default ({ avatarUrl, name, email, date, hasGreenCheck = true }) => (
+export default ({
+	avatarUrl,
+	name,
+	email,
+	date,
+	hasGreenCheck = true,
+	noText = false,
+	isAdopt = true
+}) => (
 	<Root>
 		<div
 			style={{
@@ -56,18 +64,36 @@ export default ({ avatarUrl, name, email, date, hasGreenCheck = true }) => (
 				}}
 			/>
 		</GreenCheck>
-		{date ? (
+		{noText ? (
 			<UserInfo>
-				<InviteMessage>{name || email} adopted</InviteMessage>
-				<Bottom>
-					{moment(parseInt(date, 10)).format('D MMM YYYY')} | {email}
-				</Bottom>
-			</UserInfo>
-		) : (
-			<UserInfo>
-				<InviteMessage>{name || email} invites you to adopt</InviteMessage>
+				<InviteMessage>{name}</InviteMessage>
 				<Bottom>{email}</Bottom>
 			</UserInfo>
+		) : (
+			<>
+				{date ? (
+					<UserInfo>
+						{isAdopt ? (
+							<>
+								<InviteMessage>{name || email} adopted</InviteMessage>
+								<Bottom>
+									{moment(parseInt(date, 10)).format('D MMM YYYY')} | {email}
+								</Bottom>
+							</>
+						) : (
+							<>
+								<InviteMessage>{name}</InviteMessage>
+								<Bottom>{email}</Bottom>
+							</>
+						)}
+					</UserInfo>
+				) : (
+					<UserInfo>
+						<InviteMessage>{name || email} invites you to adopt</InviteMessage>
+						<Bottom>{email}</Bottom>
+					</UserInfo>
+				)}
+			</>
 		)}
 	</Root>
 )
