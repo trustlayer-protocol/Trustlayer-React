@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 export const Root = styled.div`
-	margin: 20px 0 80px;
+	margin: 30px 0 80px;
 `
 
 export const Container = styled.div`

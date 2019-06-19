@@ -18,8 +18,8 @@ const Root = styled.div`
 `
 
 const Header = styled.div`
-	background: #111;
-	color: #eee;
+	background: #2f3384;
+	color: #fefefe;
 	text-align: center;
 	padding: 10px 0;
 	font-size: 14px;
@@ -32,7 +32,7 @@ const Header = styled.div`
 `
 
 const Link = styled.button`
-	color: #bbb;
+	color: #eee;
 	text-decoration: none;
 	transition: color 250ms;
 	background: transparent;
@@ -50,8 +50,10 @@ const Img = styled.img`
 	width: 100vw;
 	max-width: 100%;
 	z-index: 9;
-	left: -1px;
+	left: 50%;
 	top: 39px;
+	transform: translateX(-50%);
+	max-width: 500px;
 `
 
 const Backdrop = styled.div`

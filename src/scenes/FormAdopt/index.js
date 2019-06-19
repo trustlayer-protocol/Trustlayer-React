@@ -52,6 +52,7 @@ export default withRouter(({ history, match }) => {
 	const forms = _.get(fetchedData, 'forms', [])
 	const usersAdoptedTypes = forms.map(form => form.type)
 
+	window.scrollTo(0, 0)
 	const {
 		isModalOpen,
 		setModalState,

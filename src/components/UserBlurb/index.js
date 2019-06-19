@@ -56,14 +56,16 @@ export default ({
 				marginRight: 10
 			}}
 		/>
-		<GreenCheck>
-			<Done
-				style={{
-					color: 'white',
-					fontSize: 16
-				}}
-			/>
-		</GreenCheck>
+		{isAdopt && (
+			<GreenCheck>
+				<Done
+					style={{
+						color: 'white',
+						fontSize: 16
+					}}
+				/>
+			</GreenCheck>
+		)}
 		{noText ? (
 			<UserInfo>
 				<InviteMessage>{name}</InviteMessage>
