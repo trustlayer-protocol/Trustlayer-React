@@ -10,7 +10,7 @@ const Button = styled.button`
 	border: none;
 	cursor: pointer;
 	transition: background 250ms;
-	max-width: 670px;
+	max-width: 700px;
 	&:disabled {
 		background: #ddd;
 	}

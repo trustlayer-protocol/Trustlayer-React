@@ -3,6 +3,52 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 import { ArrowRightAlt } from '@material-ui/icons'
 
+export default () => (
+	<Root>
+		<Heading>Easiest NDA ever</Heading>
+		<List>
+			<Item>
+				<Number>1</Number>{' '}
+				<Text>
+					You adopt and share
+					<br />
+					your link
+				</Text>
+			</Item>
+			<ArrowContainer>
+				<ArrowRightAlt
+					style={{
+						fontSize: 44
+					}}
+				/>
+			</ArrowContainer>
+			<Item>
+				<Number>2</Number>{' '}
+				<Text>
+					They adocolorhe
+					<br />
+					NDA activities
+				</Text>
+			</Item>
+			<ArrowContainer>
+				<ArrowRightAlt
+					style={{
+						fontSize: 44
+					}}
+				/>
+			</ArrowContainer>
+			<Item>
+				<Number>3</Number>{' '}
+				<Text>
+					Blockchain verifies
+					<br />
+					and preserves
+				</Text>
+			</Item>
+		</List>
+	</Root>
+)
+
 const Heading = styled.div`
 	text-align: center;
 	font-size: 32px;
@@ -58,49 +104,3 @@ const Text = styled.div`
 	line-height: 1.4;
 	opacity: 0.9;
 `
-
-export default () => (
-	<Root>
-		<Heading>Easiest NDA ever</Heading>
-		<List>
-			<Item>
-				<Number>1</Number>{' '}
-				<Text>
-					You adopt and share
-					<br />
-					your link
-				</Text>
-			</Item>
-			<ArrowContainer>
-				<ArrowRightAlt
-					style={{
-						fontSize: 44
-					}}
-				/>
-			</ArrowContainer>
-			<Item>
-				<Number>2</Number>{' '}
-				<Text>
-					They adocolorhe
-					<br />
-					NDA activities
-				</Text>
-			</Item>
-			<ArrowContainer>
-				<ArrowRightAlt
-					style={{
-						fontSize: 44
-					}}
-				/>
-			</ArrowContainer>
-			<Item>
-				<Number>3</Number>{' '}
-				<Text>
-					Blockchain verifies
-					<br />
-					and preserves
-				</Text>
-			</Item>
-		</List>
-	</Root>
-)

@@ -12,29 +12,6 @@ import { Root, Container, ButtonContainer } from 'services/styles'
 import _ from 'lodash'
 import Snackbar from './Snackbar'
 
-const extractData = fetchedData => {
-	const agreementContent = _.get(fetchedData, 'recent_form.content', '')
-	const avatars = _.get(fetchedData, 'avatars', [])
-	const user = _.get(fetchedData, 'user', {})
-	const formId = _.get(fetchedData, 'actions[0].form_id', '')
-	const hash = _.get(fetchedData, 'actions[0].form_hash', '')
-	const actions = _.get(fetchedData, `actions`, [])
-
-	const recentAction = actions.reduce((acc, curr) => {
-		return acc.created > curr.created ? acc : curr
-	}, {})
-
-	return {
-		agreementContent,
-		user,
-		avatars,
-		formId,
-		hash,
-		actions,
-		recentAction
-	}
-}
-
 export default ({ location, history }) => {
 	const urlParams = new URLSearchParams(location.search)
 	const token = urlParams.get('token')
@@ -167,4 +144,27 @@ export default ({ location, history }) => {
 			/>
 		</>
 	)
+}
+
+const extractData = fetchedData => {
+	const agreementContent = _.get(fetchedData, 'recent_form.content', '')
+	const avatars = _.get(fetchedData, 'avatars', [])
+	const user = _.get(fetchedData, 'user', {})
+	const formId = _.get(fetchedData, 'actions[0].form_id', '')
+	const hash = _.get(fetchedData, 'actions[0].form_hash', '')
+	const actions = _.get(fetchedData, `actions`, [])
+
+	const recentAction = actions.reduce((acc, curr) => {
+		return acc.created > curr.created ? acc : curr
+	}, {})
+
+	return {
+		agreementContent,
+		user,
+		avatars,
+		formId,
+		hash,
+		actions,
+		recentAction
+	}
 }

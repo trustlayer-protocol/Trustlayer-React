@@ -9,7 +9,7 @@ const Button = styled.button`
 	font-size: 30px;
 	padding: 15px 0;
 	transition: background 250ms;
-	max-width: 670px;
+	max-width: 700px;
 	&:disabled {
 		background: #ddd;
 	}

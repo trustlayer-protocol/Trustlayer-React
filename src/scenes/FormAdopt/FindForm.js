@@ -7,7 +7,7 @@ import styled from '@emotion/styled'
 import _ from 'lodash'
 
 const Root = styled.div`
-	max-width: 670px;
+	max-width: 700px;
 	margin: 0 auto;
 	padding: 20px;
 `

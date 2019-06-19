@@ -4,6 +4,33 @@ import Avatars from 'components/Avatars'
 import Agreement from 'components/Agreement'
 import Menu from './Menu.js'
 
+export default ({
+	avatars = [],
+	hash = '',
+	agreement,
+	clickRevoke,
+	showMenu = false
+}) => (
+	<Root>
+		{showMenu && (
+			<MenuWrapper>
+				<Menu clickRevoke={clickRevoke} />
+			</MenuWrapper>
+		)}
+		{avatars.length > 0 && (
+			<>
+				<AvatarText>Adopted by</AvatarText>
+				<Avatars avatars={avatars} />
+			</>
+		)}
+		<Agreement agreement={agreement} />
+		<VerificationCode>
+			<VerifiTitle>Verification code</VerifiTitle>
+			<Hash>{hash}</Hash>
+		</VerificationCode>
+	</Root>
+)
+
 const VerificationCode = styled.div`
 	background: #f6f6fb;
 	text-align: center;
@@ -38,30 +65,3 @@ const Hash = styled.div`
 	color: #8487cc;
 	font-size: 30px;
 `
-
-export default ({
-	avatars = [],
-	hash = '',
-	agreement,
-	clickRevoke,
-	showMenu = false
-}) => (
-	<Root>
-		{showMenu && (
-			<MenuWrapper>
-				<Menu clickRevoke={clickRevoke} />
-			</MenuWrapper>
-		)}
-		{avatars.length > 0 && (
-			<>
-				<AvatarText>Adopted by</AvatarText>
-				<Avatars avatars={avatars} />
-			</>
-		)}
-		<Agreement agreement={agreement} />
-		<VerificationCode>
-			<VerifiTitle>Verification code</VerifiTitle>
-			<Hash>{hash}</Hash>
-		</VerificationCode>
-	</Root>
-)
