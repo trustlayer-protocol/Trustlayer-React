@@ -5,7 +5,7 @@ import { ArrowRightAlt } from '@material-ui/icons'
 
 export default () => (
 	<Root>
-		<Heading>Easiest NDA ever</Heading>
+		<Heading>Easiest NDA, ever.</Heading>
 		<List>
 			<Item>
 				<Number>1</Number>{' '}
@@ -25,9 +25,9 @@ export default () => (
 			<Item>
 				<Number>2</Number>{' '}
 				<Text>
-					They adocolorhe
+					They adopt and
 					<br />
-					NDA activities
+					the NDA activates
 				</Text>
 			</Item>
 			<ArrowContainer>

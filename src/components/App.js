@@ -84,9 +84,6 @@ export default () => {
 	return (
 		<>
 			<Root>
-				<Header>
-					<Link onClick={toggleImage}>How does this work?</Link>
-				</Header>
 				{isShowImage && (
 					<>
 						<Img src={HowItWorksImage} onClick={hideImage} />
