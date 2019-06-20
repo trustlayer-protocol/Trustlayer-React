@@ -18,41 +18,17 @@ import Tab from '@material-ui/core/Tab'
 import Button from '@material-ui/core/Button'
 import ndas from './tempData.js'
 
-const StyledTabs = withStyles({
-	indicator: {
-		backgroundColor: '#35373a',
-		height: 3
-	}
-})(Tabs)
-
-const useConfirmMessage = () => {
-	const [isModalOpen, setModalState] = useState(false)
-
-	const displayConfirmMessage = () => {
-		setModalState(true)
-	}
-
-	const closeConfirmMessage = () => {
-		setModalState(false)
-	}
-
-	return {
-		isModalOpen,
-		setModalState,
-		displayConfirmMessage,
-		closeConfirmMessage
-	}
-}
-
 export default withRouter(({ history, match }) => {
+	window.scrollTo(0, 0)
+
 	const email = localStorage.getItem('email')
 	const [isLoading, fetchedData] = useHttp(`get/user/email/${email}`)
 
+	debugger
 	const user = _.get(fetchedData, 'user', {})
 	const forms = _.get(fetchedData, 'forms', [])
 	const usersAdoptedTypes = forms.map(form => form.type)
 
-	window.scrollTo(0, 0)
 	const {
 		isModalOpen,
 		setModalState,
@@ -108,7 +84,9 @@ export default withRouter(({ history, match }) => {
 	const selectVersion = (event, value) => {
 		history.push(`/form/${ndaType}/${value}`)
 	}
+
 	const date = new Date()
+
 	return (
 		<>
 			<Root>
@@ -185,3 +163,29 @@ export default withRouter(({ history, match }) => {
 		</>
 	)
 })
+
+const StyledTabs = withStyles({
+	indicator: {
+		backgroundColor: '#35373a',
+		height: 3
+	}
+})(Tabs)
+
+const useConfirmMessage = () => {
+	const [isModalOpen, setModalState] = useState(false)
+
+	const displayConfirmMessage = () => {
+		setModalState(true)
+	}
+
+	const closeConfirmMessage = () => {
+		setModalState(false)
+	}
+
+	return {
+		isModalOpen,
+		setModalState,
+		displayConfirmMessage,
+		closeConfirmMessage
+	}
+}
