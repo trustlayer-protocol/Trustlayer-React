@@ -13,8 +13,7 @@ import styled from '@emotion/styled'
 import HowItWorksImage from 'media/drop-down.png'
 
 const Root = styled.div`
-	padding-top: 41px;
-	margin: 0 20px;
+	padding: 41px 20px 0;
 `
 
 const Header = styled.div`

@@ -59,9 +59,21 @@ const VerifiTitle = styled.div`
 	color: #545456;
 	font-weight: 600;
 	font-size: 30px;
+	@media (max-width: 630px) {
+		font-size: 20px;
+	}
+	@media (max-width: 450px) {
+		font-size: 16px;
+	}
 `
 
 const Hash = styled.div`
 	color: #8487cc;
 	font-size: 30px;
+	@media (max-width: 630px) {
+		font-size: 20px;
+	}
+	@media (max-width: 450px) {
+		font-size: 16px;
+	}
 `

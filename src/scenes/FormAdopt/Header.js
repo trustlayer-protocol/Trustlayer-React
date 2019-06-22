@@ -5,9 +5,7 @@ const Heading = styled.div`
 	font-size: 32px;
 	margin-bottom: 10px;
 `
-const Root = styled.div`
-	padding-left: 20px;
-`
+const Root = styled.div``
 
 const List = styled.div`
 	margin-bottom: 20px;
