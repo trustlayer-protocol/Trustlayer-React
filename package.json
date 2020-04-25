@@ -18,7 +18,7 @@
     "react-markdown": "^4.0.6",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8",
+    "react-scripts": "^3.4.1",
     "scrollmagic": "^2.0.6",
     "typeface-roboto": "^0.0.54",
     "typescript": "^3.4.2"
