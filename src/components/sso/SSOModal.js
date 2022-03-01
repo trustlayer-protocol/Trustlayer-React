@@ -43,7 +43,7 @@ class SSOModal extends Component {
 			action,
 			link,
 			user_id: userId,
-			form_id: formId
+			form_id: formId,
 		}
 
 		return encodeURI(JSON.stringify(stateObj))
@@ -61,13 +61,10 @@ class SSOModal extends Component {
 						<p>Confirm that it's really you.</p>
 					</div>
 					<ButtonContainer>
-						<LinkedInButton state={state} />
+						{/* <LinkedInButton state={state} /> */}
 						<Google.googleButton state={state} />
 					</ButtonContainer>
-					<p>
-						We will protect your private information and use it only to provide
-						this service.
-					</p>
+					<p>We will protect your private information and use it only to provide this service.</p>
 					<Link target="_blank" href="https://trustbot.io/privacy-policy">
 						Read our privacy policy
 					</Link>
