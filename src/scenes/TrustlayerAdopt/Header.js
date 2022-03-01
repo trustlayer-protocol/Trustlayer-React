@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { css } from '@emotion/core'
 import { ArrowRightAlt } from '@material-ui/icons'
 
 export default () => (
@@ -18,7 +17,7 @@ export default () => (
 			<ArrowContainer>
 				<ArrowRightAlt
 					style={{
-						fontSize: 44
+						fontSize: 44,
 					}}
 				/>
 			</ArrowContainer>
@@ -33,7 +32,7 @@ export default () => (
 			<ArrowContainer>
 				<ArrowRightAlt
 					style={{
-						fontSize: 44
+						fontSize: 44,
 					}}
 				/>
 			</ArrowContainer>

@@ -6,7 +6,8 @@ import Modal from 'components/Modal'
 import SSOModal from 'components/sso/SSOModal'
 import * as ScrollMagic from 'scrollmagic'
 import ScrollSnackbar from 'components/ScrollSnackbar'
-import Header from './Header.js'
+import Header from './Header'
+import Banner from './Banner'
 import _ from 'lodash'
 import {
 	Root,
@@ -14,7 +15,7 @@ import {
 	ButtonContainer,
 	ConfirmButton,
 	CancelButton,
-	Link
+	Link,
 } from 'services/styles'
 
 export default () => {
@@ -27,14 +28,11 @@ export default () => {
 	const [isButtonDisabled, setButtonState] = useState(true)
 
 	if (agreementHash) {
-		let browserHeight = Math.max(
-			document.documentElement.clientHeight,
-			window.innerHeight || 0
-		)
+		let browserHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
 
 		new ScrollMagic.Scene({
 			offset: document.body.scrollHeight - browserHeight - 200,
-			triggerHook: 1
+			triggerHook: 1,
 		})
 			.addTo(scrollController)
 			.on('enter leave update', e => {
@@ -69,25 +67,19 @@ export default () => {
 	return (
 		<>
 			<Root>
+				<Banner />
 				<Container>
 					<Header />
-					<AgreementBox
-						avatars={avatars}
-						hash={agreementHash}
-						agreement={agreementContent}
-					/>
+					<AgreementBox avatars={avatars} hash={agreementHash} agreement={agreementContent} />
 				</Container>
 			</Root>
 			<Modal open={isModalOpen} onClose={closeConfirmMessage}>
-				<h3>
-					Confirm that you have read and intend to be legally bound by this
-					agreement.
-				</h3>
+				<h3>Confirm that you have read and intend to be legally bound by this agreement.</h3>
 				<p>You also agree:</p>
 				<p>Trustbot is not your lawyer is not providing any legal advice.</p>
 				<p>
-					You release and will protect Trustbot from any liability arising from
-					your use of this service.
+					You release and will protect Trustbot from any liability arising from your use of this
+					service.
 				</p>
 				<Link target="_blank" href="https://trustbot.io/terms">
 					Read our terms
@@ -95,18 +87,9 @@ export default () => {
 				<ConfirmButton onClick={displaySsoModal}>Confirm</ConfirmButton>
 				<CancelButton onClick={closeConfirmMessage}>Cancel</CancelButton>
 			</Modal>
-			<SSOModal
-				handleOnClose={closeSsoModal}
-				action="adopt"
-				formId={2}
-				open={isSsoOpen}
-			/>
+			<SSOModal handleOnClose={closeSsoModal} action="adopt" formId={2} open={isSsoOpen} />
 			<ButtonContainer>
-				<AdoptButton
-					disabled={isButtonDisabled}
-					text="ADOPT"
-					onClick={displayConfirmMessage}
-				/>
+				<AdoptButton disabled={isButtonDisabled} text="ADOPT" onClick={displayConfirmMessage} />
 			</ButtonContainer>
 			<ScrollSnackbar />
 		</>
